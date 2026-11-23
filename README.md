@@ -6,7 +6,7 @@
 
 ## 🌐 Live Root DNS Endpoint
 Our automated root registry compiles all verified domains in real-time:
-`https://github.io`
+`https://rh-devlab.github.io/torch-dns/all-domains.json`
 
 ---
 
