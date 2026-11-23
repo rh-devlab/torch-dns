@@ -6,7 +6,7 @@
   },
   "record": {
     "type": "URL",
-    "target": "https://github.com/rh-devlab/torch-dns/blob/main/portal.html"
+    "target": "https://rh-devlab.github.io/torch-dns/portal.html"
   },
   "description": "Official TORCH Sovereign Web & Domain Hosting Studio"
 }
