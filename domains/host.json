@@ -1,0 +1,12 @@
+{
+  "domain": "host.torch",
+  "owner": {
+    "name": "rh-devlab",
+    "github": "rh-devlab"
+  },
+  "record": {
+    "type": "URL",
+    "target": "https://github.io"
+  },
+  "description": "Official TORCH Sovereign Web & Domain Hosting Studio"
+}
