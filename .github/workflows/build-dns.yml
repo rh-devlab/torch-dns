@@ -4,44 +4,50 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'domains/**'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  build-dns:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Compile all .torch domains into master registry
+      - name: Compile Root DNS & Copy Portal
         run: |
-          mkdir -p public
-          node -e '
-            const fs = require("fs");
-            const path = require("path");
-            const domainsDir = "./domains";
-            const master = {
-              network: "TORCH",
-              tld: ".torch",
-              updated_at: new Date().toISOString(),
-              records: {}
-            };
-            fs.readdirSync(domainsDir).forEach(file => {
-              if (file.endsWith(".json")) {
-                const data = JSON.parse(fs.readFileSync(path.join(domainsDir, file), "utf8"));
-                master.records[data.domain] = data.record.target;
-              }
-            });
-            fs.writeFileSync("./public/all-domains.json", JSON.stringify(master, null, 2));
+          python3 -c '
+          import json, glob, os, shutil
+          from datetime import datetime, timezone
+
+          records = {}
+          for path in sorted(glob.glob("domains/*.json")):
+              with open(path, "r", encoding="utf-8") as f:
+                  data = json.load(f)
+                  domain = data.get("domain", "").lower().strip()
+                  target = data.get("record", {}).get("target", "").strip()
+                  if domain.endswith(".torch") and target:
+                      records[domain] = target
+
+          output = {
+              "network": "TORCH",
+              "tld": ".torch",
+              "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "records": records
+          }
+
+          os.makedirs("dist", exist_ok=True)
+          with open("dist/all-domains.json", "w", encoding="utf-8") as out:
+              json.dump(output, out, indent=2)
+
+          if os.path.exists("portal.html"):
+              shutil.copy("portal.html", "dist/portal.html")
           '
 
-      - name: Deploy DNS Registry to GitHub Pages
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./dist
