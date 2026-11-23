@@ -1,0 +1,12 @@
+{
+  "domain": "home.torch",
+  "owner": {
+    "name": "TORCH Founder",
+    "github": "আপনার-গিটহাব-ইউজারনেম"
+  },
+  "record": {
+    "type": "URL",
+    "target": "https://example.com"
+  },
+  "description": "Official Homepage of the TORCH Network"
+}
