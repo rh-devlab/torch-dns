@@ -44,6 +44,9 @@ jobs:
 
           if os.path.exists("portal.html"):
               shutil.copy("portal.html", "dist/portal.html")
+          if os.path.exists("forge.html"):
+              shutil.copy("forge.html", "dist/forge.html")
+              
           '
 
       - name: Deploy to gh-pages
