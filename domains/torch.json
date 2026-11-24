@@ -1,0 +1,13 @@
+{
+  "domain": "torch.torch",
+  "owner_hash": "0e60e9ef25c27fdc6afcf62da8fcdf41e93dde76b7e5a727bcb77c208d0cb88f",
+  "storage": {
+    "provider": "telegram-vault",
+    "file_id": "BQACAgUAAyEGAAMBC5jyqgADBWsFCqffVwPsHPqZRZKgUDW8_W91AAKkIwACjI0oVFI6RpCaSbXLPQQ"
+  },
+  "record": {
+    "type": "URL",
+    "target": "https://torch-cloud-api.rh22042010.workers.dev/site/torch"
+  },
+  "updated_at": "2026-11-24T03:55:19.794Z"
+}
