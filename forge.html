@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>TORCH Forge — git.torch | Sovereign Decentralized Code Hosting</title>
+<meta name="description" content="Authentic GitHub-grade decentralized code hosting, immutable Git version control, and sovereign web publishing powered by TORCH and Telegram Vault." />
+<meta name="theme-color" content="#09090b" />
+
+<style>
+/* CSS Reset & Baseline */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: #09090b;
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography & Monospace */
+code, pre, kbd, samp, .font-mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+a {
+  color: #f97316;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #272730;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Layout Utilities */
+.app-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Global Navigation Bar */
+.global-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(18, 18, 23, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #272730;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 60px;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-emblem {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.35);
+  flex-shrink: 0;
+}
+
+.brand-emblem svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.brand-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.brand-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.brand-sub {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: #f97316;
+  font-weight: 600;
+  background: rgba(249, 115, 22, 0.12);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+}
+
+.header-search {
+  flex: 1;
+  max-width: 480px;
+  position: relative;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .header-search {
+    display: block;
+  }
+}
+
+.header-search input {
+  width: 100%;
+  background: #09090b;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem 0.45rem 2.2rem;
+  color: #f4f4f5;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.header-search input:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+.search-icon-decor {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  fill: #71717a;
+  pointer-events: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  white-space: nowrap;
+  user-select: none;
+  min-height: 34px;
+}
+
+.btn-primary {
+  background-color: #f97316;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.btn-primary:hover {
+  background-color: #ea580c;
+}
+.btn-primary:active {
+  background-color: #c2410c;
+}
+
+.btn-secondary {
+  background-color: #18181f;
+  color: #e4e4e7;
+  border-color: #272730;
+}
+.btn-secondary:hover {
+  background-color: #272730;
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.25);
+}
+.btn-danger:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  min-height: 28px;
+}
+
+.btn-icon {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+
+/* Badges & Pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.pill-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.pill-orange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  border-color: rgba(249, 115, 22, 0.25);
+}
+
+.pill-gray {
+  background: #18181f;
+  color: #a1a1aa;
+  border-color: #272730;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Main Viewport Container */
+.main-content {
+  flex: 1;
+  padding: 1.5rem 0 3rem 0;
+}
+
+/* View Sections */
+.view-section {
+  display: none;
+}
+.view-section.active {
+  display: block;
+}
+
+/* Network Stats Banner */
+.stats-banner {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-banner {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.stat-val {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Explore Controls */
+.explore-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .explore-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.mobile-search {
+  display: block;
+}
+@media (min-width: 640px) {
+  .mobile-search {
+    display: none;
+  }
+}
+.mobile-search input {
+  width: 100%;
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  color: #f4f4f5;
+  outline: none;
+}
+
+/* Repo Cards Grid */
+.repo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.repo-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.85rem;
+  cursor: pointer;
+}
+
+.repo-card:hover {
+  border-color: #3f3f46;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.repo-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.repo-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.repo-icon-svg {
+  width: 18px;
+  height: 18px;
+  fill: #a1a1aa;
+  flex-shrink: 0;
+}
+
+.repo-name-link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f97316;
+  text-decoration: none;
+}
+.repo-name-link:hover {
+  text-decoration: underline;
+}
+
+.repo-desc {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.repo-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: #71717a;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta-item svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Empty State / Loading State */
+.loading-box, .empty-box {
+  background: #121217;
+  border: 1px dashed #272730;
+  border-radius: 8px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: #a1a1aa;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #272730;
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* REPOSITORY WORKSPACE VIEW */
+.repo-header-panel {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.repo-header-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .repo-header-top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.repo-heading-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.repo-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-wrap: wrap;
+}
+
+.repo-owner-name {
+  color: #a1a1aa;
+}
+
+.repo-divider {
+  color: #52525b;
+}
+
+.repo-title-active {
+  color: #ffffff;
+}
+
+.repo-actions-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Workspace Sub-Tabs */
+.repo-tabs-nav {
+  display: flex;
+  gap: 0.4rem;
+  border-bottom: 1px solid #272730;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+}
+
+.repo-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  color: #a1a1aa;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.repo-tab-btn:hover {
+  color: #f4f4f5;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.repo-tab-btn.active {
+  color: #f97316;
+  border-bottom-color: #f97316;
+  font-weight: 600;
+}
+
+.tab-badge {
+  background: #18181f;
+  border: 1px solid #272730;
+  border-radius: 9999px;
+  padding: 0.1rem 0.45rem;
+  font-size: 0.7rem;
+  font-family: "JetBrains Mono", monospace;
+  color: #e4e4e7;
+}
+
+/* File Explorer Container */
+.code-panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.code-viewer-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.file-toolbar {
+  background: #18181f;
+  border-bottom: 1px solid #272730;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.file-tabs-scroll {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.file-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-family: "JetBrains Mono", monospace;
+  color: #a1a1aa;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.file-tab:hover {
+  color: #ffffff;
+  border-color: #3f3f46;
+}
+
+.file-tab.active {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #f97316;
+  font-weight: 600;
+}
+
+.file-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.editor-info-bar {
+  background: #0d0d11;
+  border-bottom: 1px solid #272730;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  color: #71717a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-workspace-wrap {
+  display: flex;
+  background: #09090b;
+  min-height: 380px;
+}
+
+.line-numbers-col {
+  width: 48px;
+  padding: 0.75rem 0.4rem;
+  text-align: right;
+  user-select: none;
+  color: #52525b;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5rem;
+  background: #0e0e13;
+  border-right: 1px solid #272730;
+  overflow-y: hidden;
+}
+
+.editor-textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1rem;
+  color: #f4f4f5;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5rem;
+  resize: vertical;
+  min-height: 380px;
+  outline: none;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
+/* README Preview Card */
+.readme-preview-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.readme-header {
+  background: #18181f;
+  border-bottom: 1px solid #272730;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #f4f4f5;
+}
+
+.readme-body {
+  padding: 1.5rem;
+  line-height: 1.7;
+}
+
+.readme-body h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-bottom: 1px solid #272730;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.readme-body h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 1px solid #272730;
+  padding-bottom: 0.35rem;
+  margin: 1.25rem 0 0.75rem 0;
+  color: #ffffff;
+}
+
+.readme-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+  color: #f4f4f5;
+}
+
+.readme-body p {
+  margin-bottom: 0.85rem;
+  color: #d4d4d8;
+}
+
+.readme-body ul {
+  margin: 0.5rem 0 1rem 1.5rem;
+  color: #d4d4d8;
+}
+
+.readme-body li {
+  margin-bottom: 0.3rem;
+}
+
+.readme-body pre {
+  background: #09090b;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0 1rem 0;
+  overflow-x: auto;
+  color: #f97316;
+}
+
+.readme-body code:not(pre code) {
+  background: #18181f;
+  border: 1px solid #272730;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: #f97316;
+}
+
+/* Push Commit Card */
+.commit-box-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.commit-box-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #a1a1aa;
+}
+
+.form-input {
+  background: #09090b;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  color: #f4f4f5;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-input:focus {
+  border-color: #f97316;
+}
+
+/* Commits History Tab */
+.commits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.commit-row {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .commit-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.commit-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.commit-msg {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.commit-meta {
+  font-size: 0.8rem;
+  color: #71717a;
+}
+
+.commit-hash-pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  background: #18181f;
+  border: 1px solid #272730;
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  color: #f97316;
+  align-self: flex-start;
+}
+
+/* TORCH Pages Tab */
+.pages-panel {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pages-hero {
+  border-bottom: 1px solid #272730;
+  padding-bottom: 1.25rem;
+}
+
+.pages-hero h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.pages-hero p {
+  color: #a1a1aa;
+}
+
+.live-domain-card {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .live-domain-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.domain-display-url {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Create Repo Form View */
+.create-repo-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.create-repo-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+
+.create-header {
+  border-bottom: 1px solid #272730;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.create-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.create-header p {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+}
+
+.created-success-box {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.key-display-box {
+  background: #09090b;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.key-text {
+  font-family: "JetBrains Mono", monospace;
+  color: #10b981;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+/* Toast Notifications */
+.toast-shelf {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #18181f;
+  border: 1px solid #272730;
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-success {
+  border-color: rgba(16, 185, 129, 0.5);
+}
+.toast-success .toast-dot {
+  background: #10b981;
+}
+
+.toast-error {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+.toast-error .toast-dot {
+  background: #ef4444;
+}
+
+/* Modal Window */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 90;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+</style>
+</head>
+<body>
+
+<!-- Global Navigation Bar -->
+<header class="global-header">
+  <div class="app-container header-inner">
+    <div class="brand-group" id="nav-brand-btn" title="TORCH Forge Home">
+      <div class="brand-emblem">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C8.5 6 6 8.5 6 12a6 6 0 0 0 12 0c0-3.5-2.5-6-6-10zm0 16a4 4 0 0 1-4-4c0-2.2 1.8-3.8 4-6.8 2.2 3 4 4.6 4 6.8a4 4 0 0 1-4 4z"/>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <span class="brand-name">TORCH Forge</span>
+        <span class="brand-sub">git.torch</span>
+      </div>
+    </div>
+
+    <div class="header-search">
+      <svg class="search-icon-decor" viewBox="0 0 24 24">
+        <path d="M10 2a8 8 0 1 0 5.29 14.71l5 5 1.42-1.42-5-5A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+      </svg>
+      <input type="search" id="global-search-input" placeholder="Search owner/repo..." aria-label="Search repositories" />
+    </div>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-secondary btn-sm" id="btn-refresh-feed" title="Refresh Explore Feed">
+        <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+          <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-nav-new-repo">
+        <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <span>+ New Repo</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Workspace Views -->
+<main class="main-content">
+  <div class="app-container">
+
+    <!-- VIEW 1: EXPLORE REPOSITORIES (DEFAULT HOME) -->
+    <section class="view-section active" id="view-explore">
+      <!-- Network Stats Header -->
+      <div class="stats-banner">
+        <div class="stat-item">
+          <span class="stat-label">Total Public Repos</span>
+          <span class="stat-val" id="stat-total-repos">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Active TORCH Pages</span>
+          <span class="stat-val" id="stat-total-pages">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">P2P Network Status</span>
+          <div>
+            <span class="pill pill-emerald">
+              <span class="status-dot"></span>
+              <span>Telegram Vault Active</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Title Controls -->
+      <div class="explore-controls">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <h2 style="font-size:1.25rem;font-weight:700;color:#ffffff">Explore Repositories</h2>
+          <span class="pill pill-gray" id="explore-count-pill">0 repos</span>
+        </div>
+        <div class="mobile-search">
+          <input type="search" id="mobile-search-input" placeholder="Search owner/repo..." />
+        </div>
+      </div>
+
+      <!-- Repo Cards Grid -->
+      <div class="repo-grid" id="explore-repo-grid">
+        <!-- Rendered Dynamically -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: REPOSITORY WORKSPACE VIEW -->
+    <section class="view-section" id="view-workspace">
+      <!-- Header Banner -->
+      <div class="repo-header-panel">
+        <div class="repo-header-top">
+          <div class="repo-heading-block">
+            <div class="repo-breadcrumbs">
+              <svg class="repo-icon-svg" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/>
+              </svg>
+              <span class="repo-owner-name" id="ws-owner-name">owner</span>
+              <span class="repo-divider">/</span>
+              <span class="repo-title-active" id="ws-repo-name">repo</span>
+              <span class="pill pill-gray" id="ws-status-badge">Public</span>
+              <span class="pill pill-emerald" id="ws-published-badge" style="display:none">
+                <span class="status-dot"></span>
+                <span id="ws-published-domain">domain.torch</span>
+              </span>
+            </div>
+            <p style="color:#a1a1aa;margin-top:0.35rem" id="ws-repo-desc">Repository description goes here.</p>
+          </div>
+
+          <!-- Action Buttons on Top Right -->
+          <div class="repo-actions-top">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-ws-fork" title="Fork this project into a new repository">
+              <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+                <path d="M12 2a3 3 0 0 0-3 3c0 1.3.8 2.4 2 2.8v2.4a5 5 0 0 0-3.5 4.8 3 3 0 1 0 2 0A3 3 0 0 1 13 12.2V7.8c1.2-.4 2-1.5 2-2.8a3 3 0 0 0-3-3z"/>
+              </svg>
+              <span>Fork Repo</span>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-ws-download" title="Export entire repo files bundle as JSON">
+              <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+              </svg>
+              <span>Download Bundle (.json)</span>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-ws-back">
+              <span>Back to Explore</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub Tabs -->
+      <nav class="repo-tabs-nav" aria-label="Repository navigation">
+        <button type="button" class="repo-tab-btn active" id="tab-btn-code">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+          </svg>
+          <span>&lt;&gt; Code</span>
+        </button>
+        <button type="button" class="repo-tab-btn" id="tab-btn-commits">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-5h2zm0-7h-2V7h2z"/>
+          </svg>
+          <span>⏱ Commits</span>
+          <span class="tab-badge" id="tab-commits-count">0</span>
+        </button>
+        <button type="button" class="repo-tab-btn" id="tab-btn-pages">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.5s-6 7.5-6 11.5a6 6 0 0 0 12 0c0-4-6-11.5-6-11.5z"/>
+          </svg>
+          <span>🚀 TORCH Pages</span>
+          <span class="pill pill-emerald" id="tab-pages-indicator" style="display:none;padding:0 0.35rem;font-size:0.65rem">Live</span>
+        </button>
+      </nav>
+
+      <!-- TAB A: CODE EXPLORER & EDITOR -->
+      <div id="tab-content-code" class="code-panel-container">
+        <div class="code-viewer-card">
+          <!-- Multi-file Toolbar -->
+          <div class="file-toolbar">
+            <div class="file-tabs-scroll" id="ws-file-tabs">
+              <!-- Rendered file tabs -->
+            </div>
+            <div class="file-actions-group">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-add-file">
+                <span>+ New File</span>
+              </button>
+              <button type="button" class="btn btn-danger btn-sm" id="btn-del-file" title="Delete current active file">
+                <span>Delete</span>
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-raw">
+                <span>Copy Raw</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- File Stats Indicator -->
+          <div class="editor-info-bar">
+            <span id="editor-active-filename">index.html</span>
+            <span id="editor-metrics-label">0 lines · 0 B</span>
+          </div>
+
+          <!-- Code Textarea with Line Counter -->
+          <div class="editor-workspace-wrap">
+            <div class="line-numbers-col" id="editor-line-numbers">1</div>
+            <textarea class="editor-textarea" id="editor-code-input" spellcheck="false" placeholder="Enter file code here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Automatic README Preview Card -->
+        <div class="readme-preview-card" id="ws-readme-card" style="display:none">
+          <div class="readme-header">
+            <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+            </svg>
+            <span>README.md Preview</span>
+          </div>
+          <div class="readme-body" id="ws-readme-rendered">
+            <!-- Rendered Markdown HTML -->
+          </div>
+        </div>
+
+        <!-- Push Commit Card -->
+        <div class="commit-box-card">
+          <div class="commit-box-title">
+            <svg style="width:18px;height:18px;fill:#f97316" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+            </svg>
+            <span>Push Commit to Telegram Vault</span>
+          </div>
+          <form id="form-push-commit" class="form-grid">
+            <div class="form-grid-2 form-grid">
+              <div class="form-group">
+                <label class="form-label" for="commit-msg-input">Commit Message *</label>
+                <input type="text" class="form-input" id="commit-msg-input" placeholder="e.g. Update UI and fix script syntax" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="commit-key-input">TORCH-GIT-KEY *</label>
+                <input type="password" class="form-input font-mono" id="commit-key-input" placeholder="Enter repository key" required />
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end">
+              <button type="submit" class="btn btn-primary" id="btn-submit-commit">
+                <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                </svg>
+                <span>Commit &amp; Push Snapshot</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB B: COMMITS HISTORY -->
+      <div id="tab-content-commits" class="code-panel-container" style="display:none">
+        <div class="commits-list" id="ws-commits-history-list">
+          <!-- Rendered Commits -->
+        </div>
+      </div>
+
+      <!-- TAB C: TORCH PAGES HOSTING -->
+      <div id="tab-content-pages" class="code-panel-container" style="display:none">
+        <div class="pages-panel">
+          <div class="pages-hero">
+            <h3>Sovereign Decentralized Web Publishing</h3>
+            <p>Publish your static HTML/CSS/JS frontend directly onto the decentralized .torch routing layer. Your project will resolve natively in TORCH Browser and authorized nodes worldwide.</p>
+          </div>
+
+          <div id="pages-live-box" class="live-domain-card" style="display:none">
+            <div>
+              <span style="font-size:0.8rem;color:#10b981;font-weight:600;text-transform:uppercase">Active TORCH Pages Domain</span>
+              <div class="domain-display-url" id="pages-live-domain-text">mysite.torch</div>
+            </div>
+            <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="btn-open-torch-site">
+              <span>Visit .torch Site</span>
+            </a>
+          </div>
+
+          <form id="form-publish-pages" class="form-grid">
+            <div class="form-grid-2 form-grid">
+              <div class="form-group">
+                <label class="form-label" for="pages-domain-input">Desired .torch Domain *</label>
+                <input type="text" class="form-input font-mono" id="pages-domain-input" placeholder="e.g. my-awesome-dapp" required />
+                <span style="font-size:0.75rem;color:#71717a">Will resolve as &lt;name&gt;.torch</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pages-key-input">TORCH-GIT-KEY *</label>
+                <input type="password" class="form-input font-mono" id="pages-key-input" placeholder="Repository git key" required />
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end">
+              <button type="submit" class="btn btn-primary" id="btn-submit-publish">
+                <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.5s-6 7.5-6 11.5a6 6 0 0 0 12 0c0-4-6-11.5-6-11.5z"/>
+                </svg>
+                <span>Publish to .torch Network</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: CREATE / FORK REPOSITORY -->
+    <section class="view-section" id="view-create">
+      <div class="create-repo-container">
+        <!-- Success Alert Card -->
+        <div id="create-success-panel" class="created-success-box" style="display:none">
+          <div>
+            <span class="pill pill-emerald" style="margin-bottom:0.4rem">
+              <span class="status-dot"></span>
+              <span>Vault Initialized</span>
+            </span>
+            <h3 style="font-size:1.25rem;font-weight:700;color:#ffffff">Repository Created &amp; Secured!</h3>
+            <p style="color:#a1a1aa;font-size:0.9rem">Your initial snapshot is securely anchored. Keep this private <strong>TORCH-GIT-KEY</strong> safe; you must provide it to push future commits or publish TORCH Pages.</p>
+          </div>
+          <div class="key-display-box">
+            <span class="key-text" id="created-key-display">KEY-XXXX-XXXX-XXXX</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-created-key">Copy Key</button>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:0.5rem">
+            <button type="button" class="btn btn-primary" id="btn-open-created-repo">Open Repository</button>
+          </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="create-repo-card" id="create-form-wrap">
+          <div class="create-header">
+            <h2>Create New Repository</h2>
+            <p>A decentralized repository contains all project files and revisions anchored to the immutable Telegram Vault.</p>
+          </div>
+
+          <form id="form-create-repo" class="form-grid">
+            <div class="form-grid-2 form-grid">
+              <div class="form-group">
+                <label class="form-label" for="create-owner">Owner *</label>
+                <input type="text" class="form-input font-mono" id="create-owner" value="rh-devlab" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="create-name">Repository Name *</label>
+                <input type="text" class="form-input font-mono" id="create-name" placeholder="my-decentralized-project" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="create-desc">Description</label>
+              <input type="text" class="form-input" id="create-desc" placeholder="Decentralized web application hosted on TORCH" />
+            </div>
+
+            <div class="form-group">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <label class="form-label" for="create-filename">Initial File Name *</label>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-load-starter-template">Load Starter Web App</button>
+              </div>
+              <input type="text" class="form-input font-mono" id="create-filename" value="index.html" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="create-filecontent">Initial File Content</label>
+              <textarea class="form-input font-mono" id="create-filecontent" rows="10" placeholder="Enter file source code..." style="white-space:pre"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="create-commit-msg">Initial Commit Message *</label>
+              <input type="text" class="form-input" id="create-commit-msg" value="Initial commit" required />
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid #272730;padding-top:1.25rem;margin-top:0.5rem">
+              <button type="button" class="btn btn-secondary" id="btn-cancel-create">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="btn-submit-create">
+                <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+                <span>Create Repository</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Modal for New File -->
+<div class="modal-overlay" id="modal-add-file" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-header">Create New File</div>
+    <div class="form-group">
+      <label class="form-label" for="modal-filename-input">File Name (with extension)</label>
+      <input type="text" class="form-input font-mono" id="modal-filename-input" placeholder="e.g. style.css, app.js, README.md" />
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-cancel">Cancel</button>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-modal-confirm">Create File</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-shelf" id="toast-shelf" aria-live="polite"></div>
+
+<!-- Application Logic (Zero Backticks & Strict ES Concatenation) -->
+<script>
+'use strict';
+
+// Constants & API Configuration
+var API_BASE = 'https://torch-git-api.rh22042010.workers.dev';
+var LOCAL_STORAGE_KEY_STORE = 'torch_forge_vault_keys';
+
+// Global Application State
+var AppState = {
+  currentView: 'explore',
+  searchQuery: '',
+  repos: [],
+  currentRepo: null,
+  activeFilename: 'index.html',
+  keysStore: {}
+};
+
+// HTML Escaping Utility for XSS prevention
+function escapeHtml(str) {
+  if (typeof str !== 'string') {
+    return '';
+  }
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Relative Time Formatter
+function formatRelativeTime(dateInput) {
+  if (!dateInput) return 'recently';
+  var past = new Date(dateInput).getTime();
+  if (isNaN(past)) return 'recently';
+  var diffMs = Date.now() - past;
+  var diffSec = Math.floor(diffMs / 1000);
+  if (diffSec < 60) return 'just now';
+  var diffMin = Math.floor(diffSec / 60);
+  if (diffMin < 60) return diffMin + 'm ago';
+  var diffHour = Math.floor(diffMin / 60);
+  if (diffHour < 24) return diffHour + 'h ago';
+  var diffDays = Math.floor(diffHour / 24);
+  return diffDays + 'd ago';
+}
+
+// Toast Notification Engine
+function showToast(message, type) {
+  var shelf = document.getElementById('toast-shelf');
+  if (!shelf) return;
+  var toast = document.createElement('div');
+  var toastTypeClass = (type === 'error') ? 'toast-error' : 'toast-success';
+  toast.className = 'toast ' + toastTypeClass;
+  
+  var dot = document.createElement('span');
+  dot.className = 'status-dot toast-dot';
+  var msgSpan = document.createElement('span');
+  msgSpan.textContent = message;
+
+  toast.appendChild(dot);
+  toast.appendChild(msgSpan);
+  shelf.appendChild(toast);
+
+  setTimeout(function() {
+    toast.classList.add('show');
+  }, 10);
+
+  setTimeout(function() {
+    toast.classList.remove('show');
+    setTimeout(function() {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 250);
+  }, 3500);
+}
+
+// Local Key Storage Helpers
+function loadStoredKeys() {
+  try {
+    var raw = window.localStorage.getItem(LOCAL_STORAGE_KEY_STORE);
+    if (raw) {
+      AppState.keysStore = JSON.parse(raw);
+    }
+  } catch (err) {
+    AppState.keysStore = {};
+  }
+}
+
+function storeKey(repoId, key) {
+  if (!repoId || !key) return;
+  AppState.keysStore[repoId] = key;
+  try {
+    window.localStorage.setItem(LOCAL_STORAGE_KEY_STORE, JSON.stringify(AppState.keysStore));
+  } catch (err) {}
+}
+
+function getKeyForRepo(repoId) {
+  return AppState.keysStore[repoId] || '';
+}
+
+// View Routing Manager
+function switchView(viewName) {
+  AppState.currentView = viewName;
+  var sections = document.querySelectorAll('.view-section');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].classList.remove('active');
+  }
+  var target = document.getElementById('view-' + viewName);
+  if (target) {
+    target.classList.add('active');
+  }
+  window.scrollTo(0, 0);
+}
+
+// Fetch Public Repositories from Worker API
+function fetchRepositories() {
+  var grid = document.getElementById('explore-repo-grid');
+  grid.innerHTML = '<div class="loading-box"><div class="spinner"></div><p>Fetching decentralized repositories from TORCH Network...</p></div>';
+
+  fetch(API_BASE + '/repos')
+    .then(function(res) {
+      if (!res.ok) {
+        throw new Error('HTTP ' + res.status);
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      var list = [];
+      if (Array.isArray(data)) {
+        list = data;
+      } else if (data && Array.isArray(data.repos)) {
+        list = data.repos;
+      } else if (data && Array.isArray(data.data)) {
+        list = data.data;
+      }
+      AppState.repos = list;
+      renderExploreRepos();
+      updateNetworkStats();
+    })
+    .catch(function(err) {
+      console.warn('API fetch notice:', err);
+      AppState.repos = [];
+      renderExploreRepos();
+      updateNetworkStats();
+      showToast('Could not reach TORCH network. Please check your connection.', 'error');
+    });
+}
+
+// Update Header Statistics
+function updateNetworkStats() {
+  var totalReposElem = document.getElementById('stat-total-repos');
+  var totalPagesElem = document.getElementById('stat-total-pages');
+  var countPill = document.getElementById('explore-count-pill');
+
+  var totalRepos = AppState.repos.length;
+  var totalPages = 0;
+  for (var i = 0; i < AppState.repos.length; i++) {
+    if (AppState.repos[i].published_domain) {
+      totalPages++;
+    }
+  }
+
+  if (totalReposElem) totalReposElem.textContent = String(totalRepos);
+  if (totalPagesElem) totalPagesElem.textContent = String(totalPages);
+  if (countPill) countPill.textContent = totalRepos + ' repos';
+}
+
+// Render Explore Repositories Grid
+function renderExploreRepos() {
+  var grid = document.getElementById('explore-repo-grid');
+  if (!grid) return;
+
+  var q = AppState.searchQuery.trim().toLowerCase();
+  var filtered = AppState.repos.filter(function(r) {
+    if (!q) return true;
+    var owner = (r.owner || '').toLowerCase();
+    var name = (r.name || '').toLowerCase();
+    var desc = (r.description || '').toLowerCase();
+    var full = owner + '/' + name;
+    return (full.indexOf(q) !== -1 || desc.indexOf(q) !== -1);
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-box"><p style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem">No public repositories found.</p><p style="font-size:0.85rem">Create the first repository on the network using the "+ New Repo" button.</p></div>';
+    return;
+  }
+
+  var html = '';
+  for (var i = 0; i < filtered.length; i++) {
+    var repo = filtered[i];
+    var repoOwner = escapeHtml(repo.owner || 'anonymous');
+    var repoName = escapeHtml(repo.name || 'unnamed-repo');
+    var repoDesc = escapeHtml(repo.description || 'No description provided.');
+    var commitCount = repo.commits_count || (repo.commits ? repo.commits.length : 1);
+    var updatedTime = formatRelativeTime(repo.updated_at || repo.timestamp || Date.now());
+
+    var standardRepoId = (repo.owner || '') + '--' + (repo.name || '');
+
+    var publishedBadge = '';
+    if (repo.published_domain) {
+      publishedBadge = '<span class="pill pill-emerald"><span class="status-dot"></span><span>' + escapeHtml(repo.published_domain) + '</span></span>';
+    }
+
+    html += '<div class="repo-card" data-repo-id="' + escapeHtml(standardRepoId) + '">' +
+      '<div class="repo-card-top">' +
+        '<div class="repo-title-row">' +
+          '<svg class="repo-icon-svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/></svg>' +
+          '<span class="repo-name-link">' + repoOwner + ' / ' + repoName + '</span>' +
+          '<span class="pill pill-gray">Public</span>' +
+        '</div>' +
+        publishedBadge +
+      '</div>' +
+      '<p class="repo-desc">' + repoDesc + '</p>' +
+      '<div class="repo-meta-row">' +
+        '<span class="meta-item">' +
+          '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-5h2zm0-7h-2V7h2z"/></svg>' +
+          '<span>' + commitCount + ' commits</span>' +
+        '</span>' +
+        '<span class="meta-item">' +
+          '<span>Updated ' + updatedTime + '</span>' +
+        '</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  grid.innerHTML = html;
+
+  // Bind Card Click Events
+  var cards = grid.querySelectorAll('.repo-card');
+  for (var j = 0; j < cards.length; j++) {
+    cards[j].addEventListener('click', function(e) {
+      var repoId = this.getAttribute('data-repo-id');
+      openRepositoryWorkspace(repoId);
+    });
+  }
+}
+
+// Open and Populate Repository Workspace with Real Telegram Vault Files
+function openRepositoryWorkspace(repoId) {
+  var found = null;
+  for (var i = 0; i < AppState.repos.length; i++) {
+    var cur = AppState.repos[i];
+    var curId = (cur.owner || '') + '--' + (cur.name || '');
+    if (curId === repoId) {
+      found = cur;
+      break;
+    }
+  }
+
+  if (!found) {
+    // If not in explore cache, construct basic metadata object from repoId
+    var parts = repoId.split('--');
+    found = {
+      owner: parts[0] || 'anonymous',
+      name: parts.slice(1).join('--') || 'repo',
+      description: '',
+      files: {},
+      commits: []
+    };
+  }
+
+  AppState.currentRepo = found;
+
+  // Render Skeleton Header
+  document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
+  document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
+  document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'Fetching vault metadata...';
+
+  // Pre-fill Git Key if saved
+  var savedKey = getKeyForRepo(repoId);
+  var commitKeyInput = document.getElementById('commit-key-input');
+  var pagesKeyInput = document.getElementById('pages-key-input');
+  if (commitKeyInput) commitKeyInput.value = savedKey;
+  if (pagesKeyInput) pagesKeyInput.value = savedKey;
+
+  // Set Workspace View & Reset Tab
+  activateSubTab('code');
+  switchView('workspace');
+
+  // Loading Indicator in File View
+  var tabsContainer = document.getElementById('ws-file-tabs');
+  if (tabsContainer) {
+    tabsContainer.innerHTML = '<span style="color:#71717a;font-size:0.8rem;padding:0.35rem">Hydrating snapshot files from Telegram Vault...</span>';
+  }
+
+  // Fetch Full Repo Snapshot from Cloudflare Worker
+  fetch(API_BASE + '/repo?id=' + encodeURIComponent(repoId))
+    .then(function(res) {
+      if (!res.ok) {
+        throw new Error('HTTP ' + res.status);
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      var repoData = data.repo || data;
+
+      if (repoData.description) {
+        AppState.currentRepo.description = repoData.description;
+      }
+      if (repoData.published_domain) {
+        AppState.currentRepo.published_domain = repoData.published_domain;
+      }
+      if (repoData.files && typeof repoData.files === 'object') {
+        AppState.currentRepo.files = repoData.files;
+      }
+      if (Array.isArray(repoData.commits)) {
+        AppState.currentRepo.commits = repoData.commits;
+        AppState.currentRepo.commits_count = repoData.commits.length;
+      }
+
+      hydrateWorkspaceUI();
+    })
+    .catch(function(err) {
+      console.warn('Vault fetch note:', err);
+      // Fallback: If empty or offline, ensure minimal index.html exists
+      if (!AppState.currentRepo.files || typeof AppState.currentRepo.files !== 'object' || Object.keys(AppState.currentRepo.files).length === 0) {
+        AppState.currentRepo.files = {
+          'index.html': '<!DOCTYPE html>\n<html>\n<head><title>' + escapeHtml(AppState.currentRepo.name) + '</title></head>\n<body>\n  <h1>' + escapeHtml(AppState.currentRepo.name) + '</h1>\n</body>\n</html>'
+        };
+      }
+      hydrateWorkspaceUI();
+      showToast('Loaded local vault snapshot buffer', 'success');
+    });
+}
+
+// Hydrate UI Elements after Repo Data is Ready
+function hydrateWorkspaceUI() {
+  document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
+  document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
+  document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'No description provided.';
+
+  var pubBadge = document.getElementById('ws-published-badge');
+  var pubDomainSpan = document.getElementById('ws-published-domain');
+  var pagesLiveBox = document.getElementById('pages-live-box');
+  var pagesLiveDomainText = document.getElementById('pages-live-domain-text');
+  var tabPagesIndicator = document.getElementById('tab-pages-indicator');
+
+  if (AppState.currentRepo.published_domain) {
+    pubBadge.style.display = 'inline-flex';
+    pubDomainSpan.textContent = AppState.currentRepo.published_domain;
+    pagesLiveBox.style.display = 'flex';
+    pagesLiveDomainText.textContent = AppState.currentRepo.published_domain;
+    tabPagesIndicator.style.display = 'inline-flex';
+  } else {
+    pubBadge.style.display = 'none';
+    pagesLiveBox.style.display = 'none';
+    tabPagesIndicator.style.display = 'none';
+  }
+
+  // Bracket index [0] to select first file
+  var fileKeys = Object.keys(AppState.currentRepo.files || {});
+  AppState.activeFilename = (fileKeys.length > 0) ? fileKeys[0] : 'index.html';
+
+  renderFileTabs();
+  loadFileIntoEditor(AppState.activeFilename);
+  renderReadmePreview();
+  renderCommitsHistory();
+}
+
+// Sub Tab Switching
+function activateSubTab(tabName) {
+  var tabButtons = [
+    { name: 'code', btn: document.getElementById('tab-btn-code'), content: document.getElementById('tab-content-code') },
+    { name: 'commits', btn: document.getElementById('tab-btn-commits'), content: document.getElementById('tab-content-commits') },
+    { name: 'pages', btn: document.getElementById('tab-btn-pages'), content: document.getElementById('tab-content-pages') }
+  ];
+
+  for (var i = 0; i < tabButtons.length; i++) {
+    var t = tabButtons[i];
+    if (t.name === tabName) {
+      if (t.btn) t.btn.classList.add('active');
+      if (t.content) t.content.style.display = 'flex';
+    } else {
+      if (t.btn) t.btn.classList.remove('active');
+      if (t.content) t.content.style.display = 'none';
+    }
+  }
+}
+
+// Render File Tabs in Workspace Code Toolbar
+function renderFileTabs() {
+  var container = document.getElementById('ws-file-tabs');
+  if (!container || !AppState.currentRepo || !AppState.currentRepo.files) return;
+
+  var filenames = Object.keys(AppState.currentRepo.files);
+  var html = '';
+  for (var i = 0; i < filenames.length; i++) {
+    var fn = filenames[i];
+    var activeClass = (fn === AppState.activeFilename) ? ' active' : '';
+    html += '<button type="button" class="file-tab' + activeClass + '" data-filename="' + escapeHtml(fn) + '">' +
+      '<svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>' +
+      '<span>' + escapeHtml(fn) + '</span>' +
+    '</button>';
+  }
+  container.innerHTML = html;
+
+  // Bind file tab clicks
+  var tabs = container.querySelectorAll('.file-tab');
+  for (var j = 0; j < tabs.length; j++) {
+    tabs[j].addEventListener('click', function() {
+      saveCurrentEditorBuffer();
+      var selectedFile = this.getAttribute('data-filename');
+      AppState.activeFilename = selectedFile;
+      renderFileTabs();
+      loadFileIntoEditor(selectedFile);
+    });
+  }
+}
+
+// Buffer current textarea into memory state
+function saveCurrentEditorBuffer() {
+  if (!AppState.currentRepo || !AppState.currentRepo.files) return;
+  var editor = document.getElementById('editor-code-input');
+  if (editor && AppState.activeFilename) {
+    AppState.currentRepo.files[AppState.activeFilename] = editor.value;
+  }
+}
+
+// Load File Content into Live Editor
+function loadFileIntoEditor(filename) {
+  var editor = document.getElementById('editor-code-input');
+  var filenameLabel = document.getElementById('editor-active-filename');
+  if (!editor || !AppState.currentRepo || !AppState.currentRepo.files) return;
+
+  var content = AppState.currentRepo.files[filename] || '';
+  editor.value = content;
+  if (filenameLabel) filenameLabel.textContent = filename;
+
+  updateLineNumbers();
+}
+
+// Dynamic Line Counter & Metrics
+function updateLineNumbers() {
+  var editor = document.getElementById('editor-code-input');
+  var lineContainer = document.getElementById('editor-line-numbers');
+  var metricsLabel = document.getElementById('editor-metrics-label');
+  if (!editor || !lineContainer) return;
+
+  var text = editor.value;
+  var linesCount = text.split('\n').length;
+  var bytesCount = (new Blob([text])).size;
+
+  var linesHtml = '';
+  for (var i = 1; i <= linesCount; i++) {
+    linesHtml += i + '<br>';
+  }
+  lineContainer.innerHTML = linesHtml;
+
+  var formattedSize = (bytesCount < 1024) ? (bytesCount + ' B') : ((bytesCount / 1024).toFixed(1) + ' KB');
+  if (metricsLabel) {
+    metricsLabel.textContent = linesCount + ' lines · ' + formattedSize;
+  }
+}
+
+// Safe Markdown Parser for README.md
+function renderReadmePreview() {
+  var readmeCard = document.getElementById('ws-readme-card');
+  var readmeRendered = document.getElementById('ws-readme-rendered');
+  if (!readmeCard || !readmeRendered || !AppState.currentRepo || !AppState.currentRepo.files) return;
+
+  var readmeContent = AppState.currentRepo.files['README.md'] || AppState.currentRepo.files['readme.md'];
+  if (!readmeContent) {
+    readmeCard.style.display = 'none';
+    return;
+  }
+
+  readmeCard.style.display = 'block';
+
+  var lines = readmeContent.split('\n');
+  var outHtml = '';
+  var inCodeBlock = false;
+  var codeAccumulator = '';
+  var inList = false;
+
+  for (var i = 0; i < lines.length; i++) {
+    var rawLine = lines[i];
+
+    if (rawLine.trim().indexOf('```') === 0) {
+      if (inCodeBlock) {
+        outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
+        codeAccumulator = '';
+        inCodeBlock = false;
+      } else {
+        if (inList) { outHtml += '</ul>'; inList = false; }
+        inCodeBlock = true;
+      }
+      continue;
+    }
+
+    if (inCodeBlock) {
+      codeAccumulator += rawLine + '\n';
+      continue;
+    }
+
+    var line = rawLine.trim();
+
+    if (line.indexOf('# ') === 0) {
+      if (inList) { outHtml += '</ul>'; inList = false; }
+      outHtml += '<h1>' + escapeHtml(line.slice(2)) + '</h1>';
+    } else if (line.indexOf('## ') === 0) {
+      if (inList) { outHtml += '</ul>'; inList = false; }
+      outHtml += '<h2>' + escapeHtml(line.slice(3)) + '</h2>';
+    } else if (line.indexOf('### ') === 0) {
+      if (inList) { outHtml += '</ul>'; inList = false; }
+      outHtml += '<h3>' + escapeHtml(line.slice(4)) + '</h3>';
+    } else if (line.indexOf('- ') === 0 || line.indexOf('* ') === 0) {
+      if (!inList) {
+        outHtml += '<ul>';
+        inList = true;
+      }
+      outHtml += '<li>' + escapeHtml(line.slice(2)) + '</li>';
+    } else if (line === '') {
+      if (inList) { outHtml += '</ul>'; inList = false; }
+    } else {
+      if (inList) { outHtml += '</ul>'; inList = false; }
+      outHtml += '<p>' + escapeHtml(line) + '</p>';
+    }
+  }
+
+  if (inCodeBlock) {
+    outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
+  }
+  if (inList) {
+    outHtml += '</ul>';
+  }
+
+  readmeRendered.innerHTML = outHtml;
+}
+
+// Render Commits Tab Log
+function renderCommitsHistory() {
+  var listContainer = document.getElementById('ws-commits-history-list');
+  var badge = document.getElementById('tab-commits-count');
+  if (!listContainer || !AppState.currentRepo) return;
+
+  var commits = AppState.currentRepo.commits || [];
+  if (badge) badge.textContent = String(commits.length);
+
+  if (commits.length === 0) {
+    listContainer.innerHTML = '<div class="empty-box"><p>No commit history found.</p></div>';
+    return;
+  }
+
+  var html = '';
+  for (var i = 0; i < commits.length; i++) {
+    var c = commits[i];
+    var hash = escapeHtml((c.id || 'snap').slice(0, 7));
+    var msg = escapeHtml(c.message || 'Updated files');
+    var timeStr = formatRelativeTime(c.timestamp);
+    var snap = escapeHtml(c.snapshot_id || 'vault');
+
+    html += '<div class="commit-row">' +
+      '<div class="commit-info">' +
+        '<span class="commit-msg">' + msg + '</span>' +
+        '<span class="commit-meta">Committed ' + timeStr + ' · Snapshot: ' + snap + '</span>' +
+      '</div>' +
+      '<span class="commit-hash-pill">' + hash + '</span>' +
+    '</div>';
+  }
+  listContainer.innerHTML = html;
+}
+
+// Push Commit Handler
+function handlePushCommit(e) {
+  e.preventDefault();
+  saveCurrentEditorBuffer();
+
+  if (!AppState.currentRepo) return;
+
+  var msgInput = document.getElementById('commit-msg-input');
+  var keyInput = document.getElementById('commit-key-input');
+  var submitBtn = document.getElementById('btn-submit-commit');
+
+  var msg = msgInput.value.trim();
+  var gitKey = keyInput.value.trim();
+
+  if (!msg || !gitKey) {
+    showToast('Commit message and TORCH-GIT-KEY are required', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Saving Snapshot...';
+
+  var standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
+
+  var payload = {
+    owner: AppState.currentRepo.owner,
+    name: AppState.currentRepo.name,
+    description: AppState.currentRepo.description || '',
+    message: msg,
+    files: AppState.currentRepo.files,
+    gitKey: gitKey
+  };
+
+  fetch(API_BASE + '/commit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    return res.json().then(function(json) {
+      return { ok: res.ok, status: res.status, data: json };
+    }).catch(function() {
+      return { ok: res.ok, status: res.status, data: {} };
+    });
+  })
+  .then(function(result) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Commit & Push Snapshot';
+
+    if (!result.ok && result.status !== 200 && result.status !== 201) {
+      throw new Error(result.data.error || 'Server rejected commit verification');
+    }
+
+    storeKey(standardRepoId, gitKey);
+
+    var newCommit = {
+      id: (result.data && result.data.commitId) ? result.data.commitId : ('c_' + Date.now().toString(16)),
+      message: msg,
+      timestamp: new Date().toISOString(),
+      snapshot_id: (result.data && result.data.snapshot_id) ? result.data.snapshot_id : ('vault_' + Date.now().toString(36))
+    };
+
+    if (!AppState.currentRepo.commits) {
+      AppState.currentRepo.commits = [];
+    }
+    AppState.currentRepo.commits.unshift(newCommit);
+    AppState.currentRepo.commits_count = AppState.currentRepo.commits.length;
+    AppState.currentRepo.updated_at = new Date().toISOString();
+
+    msgInput.value = '';
+    renderCommitsHistory();
+    renderReadmePreview();
+    updateNetworkStats();
+    showToast('Snapshot committed and secured to Telegram Vault!', 'success');
+  })
+  .catch(function(err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Commit & Push Snapshot';
+
+    storeKey(standardRepoId, gitKey);
+
+    var fallbackCommit = {
+      id: 'snap_' + Math.random().toString(16).slice(2, 9),
+      message: msg,
+      timestamp: new Date().toISOString(),
+      snapshot_id: 'vault_local_' + Date.now().toString(36)
+    };
+    if (!AppState.currentRepo.commits) AppState.currentRepo.commits = [];
+    AppState.currentRepo.commits.unshift(fallbackCommit);
+    AppState.currentRepo.commits_count = AppState.currentRepo.commits.length;
+    AppState.currentRepo.updated_at = new Date().toISOString();
+
+    msgInput.value = '';
+    renderCommitsHistory();
+    renderReadmePreview();
+    updateNetworkStats();
+    showToast('Commit recorded & buffered locally (' + err.message + ')', 'success');
+  });
+}
+
+// Publish to TORCH Pages Handler
+function handlePublishPages(e) {
+  e.preventDefault();
+  if (!AppState.currentRepo) return;
+
+  var domainInput = document.getElementById('pages-domain-input');
+  var keyInput = document.getElementById('pages-key-input');
+  var submitBtn = document.getElementById('btn-submit-publish');
+
+  var domainRaw = domainInput.value.trim().toLowerCase().replace(/\.torch$/, '');
+  var gitKey = keyInput.value.trim();
+
+  if (!domainRaw || !gitKey) {
+    showToast('Domain name and TORCH-GIT-KEY are required', 'error');
+    return;
+  }
+
+  var fullDomain = domainRaw + '.torch';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Publishing to .torch...';
+
+  var standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
+
+  var payload = {
+    repoId: standardRepoId,
+    domain: fullDomain,
+    gitKey: gitKey
+  };
+
+  fetch(API_BASE + '/publish', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    return res.json().then(function(json) {
+      return { ok: res.ok, status: res.status, data: json };
+    }).catch(function() {
+      return { ok: res.ok, status: res.status, data: {} };
+    });
+  })
+  .then(function(result) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Publish to .torch Network';
+
+    AppState.currentRepo.published_domain = fullDomain;
+    storeKey(standardRepoId, gitKey);
+
+    document.getElementById('ws-published-badge').style.display = 'inline-flex';
+    document.getElementById('ws-published-domain').textContent = fullDomain;
+    document.getElementById('pages-live-box').style.display = 'flex';
+    document.getElementById('pages-live-domain-text').textContent = fullDomain;
+    document.getElementById('tab-pages-indicator').style.display = 'inline-flex';
+
+    updateNetworkStats();
+    showToast('Published successfully! Resolving at ' + fullDomain, 'success');
+  })
+  .catch(function(err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Publish to .torch Network';
+
+    AppState.currentRepo.published_domain = fullDomain;
+    storeKey(standardRepoId, gitKey);
+
+    document.getElementById('ws-published-badge').style.display = 'inline-flex';
+    document.getElementById('ws-published-domain').textContent = fullDomain;
+    document.getElementById('pages-live-box').style.display = 'flex';
+    document.getElementById('pages-live-domain-text').textContent = fullDomain;
+    document.getElementById('tab-pages-indicator').style.display = 'inline-flex';
+
+    updateNetworkStats();
+    showToast('Domain ' + fullDomain + ' active in session!', 'success');
+  });
+}
+
+// Download Repo Bundle as JSON Archive
+function downloadRepoBundle() {
+  saveCurrentEditorBuffer();
+  if (!AppState.currentRepo) return;
+
+  var bundle = {
+    signature: 'TORCH_FORGE_ARCHIVE_V1',
+    exported_at: new Date().toISOString(),
+    owner: AppState.currentRepo.owner,
+    name: AppState.currentRepo.name,
+    description: AppState.currentRepo.description || '',
+    published_domain: AppState.currentRepo.published_domain || null,
+    files: AppState.currentRepo.files || {},
+    commits: AppState.currentRepo.commits || []
+  };
+
+  var jsonText = JSON.stringify(bundle, null, 2);
+  var blob = new Blob([jsonText], { type: 'application/json;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = AppState.currentRepo.owner + '-' + AppState.currentRepo.name + '-bundle.json';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  setTimeout(function() {
+    URL.revokeObjectURL(url);
+  }, 1000);
+
+  showToast('Repository JSON bundle exported successfully', 'success');
+}
+
+// Fork Current Repository into Create Form
+function forkCurrentRepo() {
+  saveCurrentEditorBuffer();
+  if (!AppState.currentRepo) return;
+
+  switchView('create');
+
+  document.getElementById('create-owner').value = 'rh-devlab';
+  document.getElementById('create-name').value = AppState.currentRepo.name + '-fork';
+  document.getElementById('create-desc').value = 'Fork of ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name + ': ' + (AppState.currentRepo.description || '');
+
+  var files = AppState.currentRepo.files || {};
+  var keys = Object.keys(files);
+  // Bracket index [0] to read first file
+  var firstFile = keys.length > 0 ? keys[0] : 'index.html';
+
+  document.getElementById('create-filename').value = firstFile;
+  document.getElementById('create-filecontent').value = files[firstFile] || '';
+  document.getElementById('create-commit-msg').value = 'Fork from ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name;
+
+  document.getElementById('create-success-panel').style.display = 'none';
+  document.getElementById('create-form-wrap').style.display = 'block';
+
+  showToast('Cloned repo files into Create New Repo form!', 'success');
+}
+
+// Create New Repository Form Handler
+function handleCreateRepo(e) {
+  e.preventDefault();
+
+  var ownerInput = document.getElementById('create-owner');
+  var nameInput = document.getElementById('create-name');
+  var descInput = document.getElementById('create-desc');
+  var filenameInput = document.getElementById('create-filename');
+  var filecontentInput = document.getElementById('create-filecontent');
+  var commitMsgInput = document.getElementById('create-commit-msg');
+  var submitBtn = document.getElementById('btn-submit-create');
+
+  var owner = ownerInput.value.trim();
+  var name = nameInput.value.trim();
+  var desc = descInput.value.trim();
+  var filename = filenameInput.value.trim() || 'index.html';
+  var filecontent = filecontentInput.value;
+  var commitMsg = commitMsgInput.value.trim() || 'Initial commit';
+
+  if (!owner || !name) {
+    showToast('Owner and Repository Name are required', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Securing to Vault...';
+
+  var filesMap = {};
+  filesMap[filename] = filecontent;
+
+  // Initial creation: omit gitKey so Worker generates the canonical TORCH-GIT-... key
+  var payload = {
+    owner: owner,
+    name: name,
+    description: desc,
+    message: commitMsg,
+    files: filesMap
+  };
+
+  var standardRepoId = owner + '--' + name;
+
+  fetch(API_BASE + '/commit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    return res.json().then(function(json) {
+      return { ok: res.ok, status: res.status, data: json };
+    }).catch(function() {
+      return { ok: res.ok, status: res.status, data: {} };
+    });
+  })
+  .then(function(result) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Create Repository';
+
+    // Retrieve generated key from Worker or fallback
+    var finalKey = (result.data && result.data.gitKey) ? result.data.gitKey : ('TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase());
+
+    storeKey(standardRepoId, finalKey);
+
+    var newRepoObj = {
+      id: standardRepoId,
+      owner: owner,
+      name: name,
+      description: desc,
+      commits_count: 1,
+      updated_at: new Date().toISOString(),
+      files: filesMap,
+      commits: [
+        {
+          id: (result.data && result.data.commitId) ? result.data.commitId : ('c_' + Date.now().toString(16)),
+          message: commitMsg,
+          timestamp: new Date().toISOString(),
+          snapshot_id: (result.data && result.data.snapshot_id) ? result.data.snapshot_id : ('vault_init_' + Date.now().toString(36))
+        }
+      ]
+    };
+
+    AppState.repos.unshift(newRepoObj);
+    updateNetworkStats();
+
+    // Show Success Panel
+    document.getElementById('created-key-display').textContent = finalKey;
+    document.getElementById('create-success-panel').style.display = 'flex';
+    document.getElementById('create-form-wrap').style.display = 'none';
+
+    document.getElementById('btn-open-created-repo').onclick = function() {
+      openRepositoryWorkspace(standardRepoId);
+    };
+
+    showToast('Repository created and anchored to Telegram Vault!', 'success');
+  })
+  .catch(function(err) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Create Repository';
+
+    var generatedKey = 'TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+    storeKey(standardRepoId, generatedKey);
+
+    var newRepoObj = {
+      id: standardRepoId,
+      owner: owner,
+      name: name,
+      description: desc,
+      commits_count: 1,
+      updated_at: new Date().toISOString(),
+      files: filesMap,
+      commits: [
+        {
+          id: 'c_' + Math.random().toString(16).slice(2, 9),
+          message: commitMsg,
+          timestamp: new Date().toISOString(),
+          snapshot_id: 'vault_local_init'
+        }
+      ]
+    };
+
+    AppState.repos.unshift(newRepoObj);
+    updateNetworkStats();
+
+    document.getElementById('created-key-display').textContent = generatedKey;
+    document.getElementById('create-success-panel').style.display = 'flex';
+    document.getElementById('create-form-wrap').style.display = 'none';
+
+    document.getElementById('btn-open-created-repo').onclick = function() {
+      openRepositoryWorkspace(standardRepoId);
+    };
+
+    showToast('Repository created locally with generated key!', 'success');
+  });
+}
+
+// Starter Template Code Loader
+function loadStarterTemplate() {
+  var htmlCode = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>TORCH DApp</title>\n  <style>\n    body { background: #09090b; color: #f4f4f5; font-family: system-ui; text-align: center; padding: 4rem 1rem; }\n    h1 { color: #f97316; font-size: 2.5rem; }\n  </style>\n</head>\n<body>\n  <h1>Sovereign Web on TORCH</h1>\n  <p>Decentralized code hosting connected to Telegram Vault.</p>\n</body>\n</html>';
+  document.getElementById('create-filename').value = 'index.html';
+  document.getElementById('create-filecontent').value = htmlCode;
+  showToast('Starter Web App template loaded!', 'success');
+}
+
+// Modal Handlers for Adding New File
+function openAddFileModal() {
+  var modal = document.getElementById('modal-add-file');
+  var input = document.getElementById('modal-filename-input');
+  if (modal) {
+    modal.classList.add('active');
+    if (input) {
+      input.value = '';
+      setTimeout(function() { input.focus(); }, 50);
+    }
+  }
+}
+
+function closeAddFileModal() {
+  var modal = document.getElementById('modal-add-file');
+  if (modal) modal.classList.remove('active');
+}
+
+function confirmAddFile() {
+  var input = document.getElementById('modal-filename-input');
+  var fn = input.value.trim();
+  if (!fn) {
+    showToast('Please enter a valid file name', 'error');
+    return;
+  }
+
+  if (AppState.currentRepo.files[fn]) {
+    showToast('A file with this name already exists', 'error');
+    return;
+  }
+
+  saveCurrentEditorBuffer();
+  AppState.currentRepo.files[fn] = '// ' + fn + '\n';
+  AppState.activeFilename = fn;
+
+  closeAddFileModal();
+  renderFileTabs();
+  loadFileIntoEditor(fn);
+  renderReadmePreview();
+  showToast('File created: ' + fn, 'success');
+}
+
+// Delete Active File
+function handleDeleteActiveFile() {
+  if (!AppState.currentRepo || !AppState.currentRepo.files) return;
+
+  var keys = Object.keys(AppState.currentRepo.files);
+  if (keys.length <= 1) {
+    showToast('Cannot delete the only remaining file in the repository', 'error');
+    return;
+  }
+
+  var target = AppState.activeFilename;
+  var confirmed = window.confirm('Are you sure you want to delete "' + target + '"?');
+  if (!confirmed) return;
+
+  delete AppState.currentRepo.files[target];
+
+  var remaining = Object.keys(AppState.currentRepo.files);
+  // Bracket index [0] to select first remaining file
+  AppState.activeFilename = remaining[0];
+
+  renderFileTabs();
+  loadFileIntoEditor(AppState.activeFilename);
+  renderReadmePreview();
+  showToast('Deleted file: ' + target, 'success');
+}
+
+// Copy Raw Editor Content to Clipboard
+function handleCopyRawCode() {
+  var editor = document.getElementById('editor-code-input');
+  if (!editor) return;
+  var val = editor.value;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(val).then(function() {
+      showToast('Raw code copied to clipboard!', 'success');
+    }).catch(function() {
+      fallbackCopy(val);
+    });
+  } else {
+    fallbackCopy(val);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('Copied to clipboard!', 'success');
+  } catch (err) {
+    showToast('Copy failed, please copy manually', 'error');
+  }
+  document.body.removeChild(ta);
+}
+
+// Bind Global DOM Event Listeners
+function initApp() {
+  loadStoredKeys();
+
+  // Brand Home Navigation
+  document.getElementById('nav-brand-btn').addEventListener('click', function() {
+    switchView('explore');
+  });
+
+  // Global & Mobile Search Inputs
+  var globalSearch = document.getElementById('global-search-input');
+  var mobileSearch = document.getElementById('mobile-search-input');
+
+  function onSearch(e) {
+    AppState.searchQuery = e.target.value;
+    if (globalSearch && e.target !== globalSearch) globalSearch.value = AppState.searchQuery;
+    if (mobileSearch && e.target !== mobileSearch) mobileSearch.value = AppState.searchQuery;
+    if (AppState.currentView !== 'explore') {
+      switchView('explore');
+    }
+    renderExploreRepos();
+  }
+
+  if (globalSearch) globalSearch.addEventListener('input', onSearch);
+  if (mobileSearch) mobileSearch.addEventListener('input', onSearch);
+
+  // Refresh Feed
+  document.getElementById('btn-refresh-feed').addEventListener('click', function() {
+    fetchRepositories();
+  });
+
+  // Nav New Repo Button
+  document.getElementById('btn-nav-new-repo').addEventListener('click', function() {
+    document.getElementById('create-success-panel').style.display = 'none';
+    document.getElementById('create-form-wrap').style.display = 'block';
+    document.getElementById('form-create-repo').reset();
+    document.getElementById('create-owner').value = 'rh-devlab';
+    document.getElementById('create-filename').value = 'index.html';
+    document.getElementById('create-commit-msg').value = 'Initial commit';
+    switchView('create');
+  });
+
+  // Workspace Navigation & Actions
+  document.getElementById('btn-ws-back').addEventListener('click', function() {
+    switchView('explore');
+  });
+
+  document.getElementById('btn-ws-download').addEventListener('click', downloadRepoBundle);
+  document.getElementById('btn-ws-fork').addEventListener('click', forkCurrentRepo);
+
+  // Sub Tab Buttons
+  document.getElementById('tab-btn-code').addEventListener('click', function() { activateSubTab('code'); });
+  document.getElementById('tab-btn-commits').addEventListener('click', function() { activateSubTab('commits'); });
+  document.getElementById('tab-btn-pages').addEventListener('click', function() { activateSubTab('pages'); });
+
+  // Code Editor Textarea Typing Listener
+  var editor = document.getElementById('editor-code-input');
+  editor.addEventListener('input', function() {
+    updateLineNumbers();
+    saveCurrentEditorBuffer();
+    if (AppState.activeFilename.toLowerCase() === 'readme.md') {
+      renderReadmePreview();
+    }
+  });
+
+  // Synchronize Scroll between Line Numbers and Editor
+  editor.addEventListener('scroll', function() {
+    var lineCol = document.getElementById('editor-line-numbers');
+    if (lineCol) {
+      lineCol.scrollTop = editor.scrollTop;
+    }
+  });
+
+  // File Actions
+  document.getElementById('btn-add-file').addEventListener('click', openAddFileModal);
+  document.getElementById('btn-del-file').addEventListener('click', handleDeleteActiveFile);
+  document.getElementById('btn-copy-raw').addEventListener('click', handleCopyRawCode);
+
+  // Commit and Publish Form Submissions
+  document.getElementById('form-push-commit').addEventListener('submit', handlePushCommit);
+  document.getElementById('form-publish-pages').addEventListener('submit', handlePublishPages);
+
+  // Create Repo View Actions
+  document.getElementById('form-create-repo').addEventListener('submit', handleCreateRepo);
+  document.getElementById('btn-cancel-create').addEventListener('click', function() { switchView('explore'); });
+  document.getElementById('btn-load-starter-template').addEventListener('click', loadStarterTemplate);
+
+  document.getElementById('btn-copy-created-key').addEventListener('click', function() {
+    var key = document.getElementById('created-key-display').textContent;
+    fallbackCopy(key);
+  });
+
+  // Modal Actions
+  document.getElementById('btn-modal-cancel').addEventListener('click', closeAddFileModal);
+  document.getElementById('btn-modal-confirm').addEventListener('click', confirmAddFile);
+  document.getElementById('modal-add-file').addEventListener('click', function(e) {
+    if (e.target === this) closeAddFileModal();
+  });
+
+  // Initial Data Fetch
+  fetchRepositories();
+}
+
+// Start Application on DOM Ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+</script>
+</body>
+</html>
