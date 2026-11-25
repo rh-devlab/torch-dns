@@ -3,7 +3,7 @@
   "owner": "rh-devlab",
   "name": "google",
   "owner_hash": "c77237ce5b7d6bdcacd4fe5ab03085c3209059020eb49370be6327f37b49106d",
-  "published_domain": null,
+  "published_domain": "google.torch",
   "commits": [
     {
       "id": "68d71941",
@@ -19,7 +19,7 @@
     }
   ],
   "description": "",
-  "updated_at": "2026-11-25T04:04:41.739Z",
+  "updated_at": "2026-11-25T04:05:32.036Z",
   "commits_count": 2,
   "latest_snapshot_id": "BQACAgUAAyEGAAMBC5jyqgADB2sGXlo4EAyPZwIFXKjoQE6ZXZXCAAKSJAAC-HAwVHRv9songd2MPQQ"
 }
