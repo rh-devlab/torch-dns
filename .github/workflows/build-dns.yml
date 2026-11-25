@@ -26,7 +26,7 @@ jobs:
           import json, glob, os, shutil
           from datetime import datetime, timezone
 
-          WORKER_BASE = "https://workers.dev"
+          WORKER_BASE = "https://torch-cloud-api.rh22042010.workers.dev/site"
           records = {}
 
           for path in sorted(glob.glob("domains/*.json")):
