@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-<title>TORCH Forge — git.torch | Sovereign Decentralized Code Hosting</title>
+<title>TORCH Forge &mdash; git.torch | Sovereign Decentralized Code Hosting</title>
 <meta name="description" content="Authentic GitHub-grade decentralized code hosting, immutable Git version control, and sovereign web publishing powered by TORCH and Telegram Vault." />
 <meta name="theme-color" content="#09090b" />
 
@@ -202,108 +202,58 @@ button, input, textarea, select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.85rem;
+  gap: 0.5rem;
+  font-weight: 600;
   border-radius: 6px;
-  font-weight: 500;
+  padding: 0.5rem 0.9rem;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.15s ease-in-out;
-  white-space: nowrap;
+  transition: all 0.15s ease;
   user-select: none;
-  min-height: 34px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
 }
 
 .btn-primary {
-  background-color: #f97316;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #ffffff;
-  border-color: #ea580c;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
 }
 .btn-primary:hover {
-  background-color: #ea580c;
-}
-.btn-primary:active {
-  background-color: #c2410c;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
 }
 
 .btn-secondary {
-  background-color: #18181f;
+  background: #18181f;
   color: #e4e4e7;
-  border-color: #272730;
+  border: 1px solid #272730;
 }
 .btn-secondary:hover {
-  background-color: #272730;
+  background: #22222b;
+  border-color: #3f3f46;
   color: #ffffff;
 }
 
 .btn-danger {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.25);
-}
-.btn-danger:hover {
-  background-color: #ef4444;
+  background: #ef4444;
   color: #ffffff;
 }
-
-.btn-sm {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
-  min-height: 28px;
+.btn-danger:hover {
+  background: #dc2626;
 }
 
-.btn-icon {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-}
-
-/* Badges & Pills */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.15rem 0.55rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid transparent;
-}
-
-.pill-emerald {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border-color: rgba(16, 185, 129, 0.25);
-}
-
-.pill-orange {
-  background: rgba(249, 115, 22, 0.1);
-  color: #f97316;
-  border-color: rgba(249, 115, 22, 0.25);
-}
-
-.pill-gray {
-  background: #18181f;
-  color: #a1a1aa;
-  border-color: #272730;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: currentColor;
-  box-shadow: 0 0 6px currentColor;
-}
-
-/* Main Viewport Container */
+/* Main View Container */
 .main-content {
   flex: 1;
-  padding: 1.5rem 0 3rem 0;
+  padding: 1.5rem 0 3rem;
 }
 
-/* View Sections */
 .view-section {
   display: none;
 }
@@ -313,21 +263,14 @@ button, input, textarea, select {
 
 /* Network Stats Banner */
 .stats-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   background: #121217;
   border: 1px solid #272730;
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.75rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .stats-banner {
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-  }
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .stat-item {
@@ -337,58 +280,54 @@ button, input, textarea, select {
 }
 
 .stat-label {
-  font-size: 0.8rem;
-  color: #a1a1aa;
+  font-size: 0.75rem;
+  color: #71717a;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   font-weight: 600;
 }
 
 .stat-val {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #ffffff;
   font-family: "JetBrains Mono", monospace;
 }
 
-/* Explore Controls */
+/* Explore View Controls */
 .explore-controls {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-@media (min-width: 640px) {
-  .explore-controls {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mobile-search {
   display: block;
+  flex: 1;
+  max-width: 320px;
 }
 @media (min-width: 640px) {
   .mobile-search {
     display: none;
   }
 }
+
 .mobile-search input {
   width: 100%;
   background: #121217;
   border: 1px solid #272730;
   border-radius: 6px;
-  padding: 0.6rem 0.75rem;
+  padding: 0.45rem 0.75rem;
   color: #f4f4f5;
   outline: none;
 }
 
-/* Repo Cards Grid */
+/* Repositories Grid */
 .repo-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
 }
 
@@ -397,18 +336,20 @@ button, input, textarea, select {
   border: 1px solid #272730;
   border-radius: 8px;
   padding: 1.25rem;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 0.85rem;
+  transition: all 0.2s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .repo-card:hover {
   border-color: #3f3f46;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transform: translateY(-1px);
+  background: #18181f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .repo-card-top {
@@ -422,29 +363,25 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 1.05rem;
 }
 
 .repo-icon-svg {
-  width: 18px;
-  height: 18px;
-  fill: #a1a1aa;
+  width: 16px;
+  height: 16px;
+  fill: #f97316;
   flex-shrink: 0;
 }
 
 .repo-name-link {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #f97316;
-  text-decoration: none;
-}
-.repo-name-link:hover {
-  text-decoration: underline;
+  color: #ffffff;
+  word-break: break-all;
 }
 
 .repo-desc {
   color: #a1a1aa;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.45;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -455,46 +392,54 @@ button, input, textarea, select {
 .repo-meta-row {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-  font-size: 0.8rem;
+  gap: 1rem;
+  font-size: 0.75rem;
   color: #71717a;
+  border-top: 1px solid #1c1c24;
+  padding-top: 0.65rem;
 }
 
 .meta-item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
 .meta-item svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   fill: currentColor;
 }
 
-/* Empty State / Loading State */
-.loading-box, .empty-box {
-  background: #121217;
-  border: 1px dashed #272730;
-  border-radius: 8px;
-  padding: 3rem 1.5rem;
-  text-align: center;
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.pill-emerald {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.pill-gray {
+  background: #1c1c24;
   color: #a1a1aa;
+  border-color: #272730;
 }
 
-.spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid #272730;
-  border-top-color: #f97316;
+.status-dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 1rem auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  background: #10b981;
+  display: inline-block;
 }
 
 /* REPOSITORY WORKSPACE VIEW */
@@ -599,11 +544,11 @@ button, input, textarea, select {
   color: #e4e4e7;
 }
 
-/* File Explorer Container */
+/* Code Panel Container */
 .code-panel-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .code-viewer-card {
@@ -616,7 +561,7 @@ button, input, textarea, select {
 .file-toolbar {
   background: #18181f;
   border-bottom: 1px solid #272730;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -636,13 +581,13 @@ button, input, textarea, select {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.65rem;
   background: #121217;
   border: 1px solid #272730;
-  border-radius: 5px;
+  border-radius: 6px;
+  color: #a1a1aa;
   font-size: 0.8rem;
   font-family: "JetBrains Mono", monospace;
-  color: #a1a1aa;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -653,67 +598,69 @@ button, input, textarea, select {
 }
 
 .file-tab.active {
-  background: rgba(249, 115, 22, 0.15);
-  border-color: rgba(249, 115, 22, 0.4);
+  background: #272730;
   color: #f97316;
+  border-color: #3f3f46;
   font-weight: 600;
 }
 
 .file-actions-group {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .editor-info-bar {
-  background: #0d0d11;
-  border-bottom: 1px solid #272730;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.75rem;
-  color: #71717a;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.4rem 1rem;
+  background: #09090b;
+  border-bottom: 1px solid #1c1c24;
+  font-size: 0.75rem;
+  color: #71717a;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .editor-workspace-wrap {
   display: flex;
+  position: relative;
   background: #09090b;
   min-height: 380px;
 }
 
 .line-numbers-col {
   width: 48px;
-  padding: 0.75rem 0.4rem;
+  background: #0d0d12;
+  border-right: 1px solid #1c1c24;
+  padding: 1rem 0.5rem;
   text-align: right;
-  user-select: none;
-  color: #52525b;
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.82rem;
-  line-height: 1.5rem;
-  background: #0e0e13;
-  border-right: 1px solid #272730;
+  font-size: 0.8rem;
+  color: #52525b;
+  user-select: none;
+  line-height: 1.5;
   overflow-y: hidden;
 }
 
 .editor-textarea {
   flex: 1;
   background: transparent;
-  border: none;
-  padding: 0.75rem 1rem;
   color: #f4f4f5;
+  border: none;
+  outline: none;
+  resize: vertical;
+  padding: 1rem;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
-  line-height: 1.5rem;
-  resize: vertical;
-  min-height: 380px;
-  outline: none;
+  line-height: 1.5;
   white-space: pre;
-  overflow-wrap: normal;
+  tab-size: 2;
   overflow-x: auto;
+  min-height: 380px;
 }
 
-/* README Preview Card */
+/* README Preview Section */
 .readme-preview-card {
   background: #121217;
   border: 1px solid #272730;
@@ -722,77 +669,34 @@ button, input, textarea, select {
 }
 
 .readme-header {
+  padding: 0.75rem 1.25rem;
   background: #18181f;
   border-bottom: 1px solid #272730;
-  padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  color: #f4f4f5;
+  color: #ffffff;
 }
 
 .readme-body {
   padding: 1.5rem;
-  line-height: 1.7;
+  color: #d4d4d8;
+  line-height: 1.65;
 }
 
-.readme-body h1 {
-  font-size: 1.6rem;
+.readme-body h1, .readme-body h2, .readme-body h3 {
+  color: #ffffff;
+  margin: 1.2rem 0 0.6rem;
   font-weight: 700;
-  border-bottom: 1px solid #272730;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  color: #ffffff;
 }
-
-.readme-body h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  border-bottom: 1px solid #272730;
-  padding-bottom: 0.35rem;
-  margin: 1.25rem 0 0.75rem 0;
-  color: #ffffff;
-}
-
-.readme-body h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 1rem 0 0.5rem 0;
-  color: #f4f4f5;
-}
-
-.readme-body p {
-  margin-bottom: 0.85rem;
-  color: #d4d4d8;
-}
-
-.readme-body ul {
-  margin: 0.5rem 0 1rem 1.5rem;
-  color: #d4d4d8;
-}
-
-.readme-body li {
-  margin-bottom: 0.3rem;
-}
-
-.readme-body pre {
-  background: #09090b;
-  border: 1px solid #272730;
-  border-radius: 6px;
-  padding: 0.85rem 1rem;
-  margin: 0.75rem 0 1rem 0;
-  overflow-x: auto;
-  color: #f97316;
-}
-
-.readme-body code:not(pre code) {
-  background: #18181f;
-  border: 1px solid #272730;
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
-  color: #f97316;
-}
+.readme-body h1 { font-size: 1.5rem; border-bottom: 1px solid #272730; padding-bottom: 0.4rem; }
+.readme-body h2 { font-size: 1.25rem; border-bottom: 1px solid #1c1c24; padding-bottom: 0.3rem; }
+.readme-body h3 { font-size: 1.1rem; }
+.readme-body p { margin-bottom: 0.8rem; }
+.readme-body pre { background: #09090b; padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; border: 1px solid #272730; }
+.readme-body code { font-size: 0.85rem; color: #f97316; }
+.readme-body ul { margin-left: 1.5rem; margin-bottom: 0.8rem; }
 
 /* Push Commit Card */
 .commit-box-card {
@@ -803,21 +707,26 @@ button, input, textarea, select {
 }
 
 .commit-box-title {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-grid-2 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
-
 @media (min-width: 640px) {
   .form-grid-2 {
     grid-template-columns: 1fr 1fr;
@@ -832,7 +741,7 @@ button, input, textarea, select {
 
 .form-label {
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #a1a1aa;
 }
 
@@ -843,64 +752,56 @@ button, input, textarea, select {
   padding: 0.55rem 0.75rem;
   color: #f4f4f5;
   outline: none;
-  transition: border-color 0.15s;
+  font-size: 0.875rem;
 }
-
 .form-input:focus {
   border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
 }
 
-/* Commits History Tab */
+/* Commits Tab */
 .commits-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .commit-row {
   background: #121217;
   border: 1px solid #272730;
   border-radius: 6px;
-  padding: 1rem 1.25rem;
+  padding: 0.85rem 1.25rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .commit-row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .commit-info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
 }
 
 .commit-msg {
   font-weight: 600;
   color: #ffffff;
-  font-size: 0.95rem;
 }
 
 .commit-meta {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #71717a;
 }
 
 .commit-hash-pill {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.75rem;
-  background: #18181f;
-  border: 1px solid #272730;
-  border-radius: 4px;
-  padding: 0.2rem 0.55rem;
   color: #f97316;
-  align-self: flex-start;
+  background: rgba(249, 115, 22, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  white-space: nowrap;
 }
 
 /* TORCH Pages Tab */
@@ -914,13 +815,8 @@ button, input, textarea, select {
   gap: 1.5rem;
 }
 
-.pages-hero {
-  border-bottom: 1px solid #272730;
-  padding-bottom: 1.25rem;
-}
-
 .pages-hero h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.4rem;
@@ -928,36 +824,32 @@ button, input, textarea, select {
 
 .pages-hero p {
   color: #a1a1aa;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .live-domain-card {
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: 8px;
-  padding: 1.25rem;
+  padding: 1rem 1.25rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .live-domain-card {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .domain-display-url {
   font-family: "JetBrains Mono", monospace;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.1rem;
   color: #10b981;
+  font-weight: 700;
 }
 
-/* Create Repo Form View */
+/* Create New Repo View */
 .create-repo-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -965,17 +857,15 @@ button, input, textarea, select {
   background: #121217;
   border: 1px solid #272730;
   border-radius: 8px;
-  padding: 1.75rem;
+  padding: 1.5rem;
 }
 
 .create-header {
-  border-bottom: 1px solid #272730;
-  padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .create-header h2 {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -1103,6 +993,140 @@ button, input, textarea, select {
   gap: 0.6rem;
   margin-top: 1.25rem;
 }
+
+/* Danger Zone & Settings Styles */
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settings-card {
+  background: #121217;
+  border: 1px solid #272730;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.settings-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.settings-card p {
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.danger-card {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.03);
+}
+
+.danger-card h3 {
+  color: #ef4444;
+}
+
+.danger-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@media (min-width: 640px) {
+  .danger-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.danger-item-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.danger-item-info p {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+  margin-bottom: 0;
+  margin-top: 0.2rem;
+}
+
+/* User Identity Pill in Header */
+.user-identity-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: #18181f;
+  border: 1px solid #272730;
+  color: #f4f4f5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.user-identity-btn:hover {
+  background: #22222b;
+  border-color: #f97316;
+}
+
+.user-avatar-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.user-avatar-dot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.read-only-banner {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: #93c5fd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  color: #ef4444;
+}
+.btn-danger-outline:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
 </style>
 </head>
 <body>
@@ -1130,12 +1154,21 @@ button, input, textarea, select {
     </div>
 
     <div class="header-actions">
+      <!-- TORCH ID Login / Profile Badge -->
+      <button type="button" class="user-identity-btn" id="btn-user-identity" title="TORCH ID Sovereign Authentication">
+        <span class="user-avatar-dot" id="header-avatar-container">
+          <span id="header-avatar-initials">?</span>
+        </span>
+        <span id="header-username-label">Log in TORCH ID</span>
+      </button>
+
       <button type="button" class="btn btn-secondary btn-sm" id="btn-refresh-feed" title="Refresh Explore Feed">
         <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
           <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
         </svg>
         <span>Refresh</span>
       </button>
+
       <button type="button" class="btn btn-primary btn-sm" id="btn-nav-new-repo">
         <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
@@ -1146,7 +1179,7 @@ button, input, textarea, select {
   </div>
 </header>
 
-<!-- Main Workspace Views -->
+<!-- Main Content Area -->
 <main class="main-content">
   <div class="app-container">
 
@@ -1167,7 +1200,7 @@ button, input, textarea, select {
           <div>
             <span class="pill pill-emerald">
               <span class="status-dot"></span>
-              <span>Telegram Vault Active</span>
+              <span>Worker v3.0 Active</span>
             </span>
           </div>
         </div>
@@ -1233,7 +1266,18 @@ button, input, textarea, select {
         </div>
       </div>
 
-      <!-- Sub Tabs -->
+      <!-- Read-Only Notice if Visitor is not Repo Owner -->
+      <div id="ws-readonly-notice" class="read-only-banner" style="display:none">
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          <svg style="width:16px;height:16px;fill:currentColor;flex-shrink:0" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+          <span>You are viewing this repository as a public reader. To edit files, commit revisions, or publish pages, fork this repository.</span>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-readonly-fork">Fork Now</button>
+      </div>
+
+      <!-- GitHub 4-Tab Navigation Bar -->
       <nav class="repo-tabs-nav" aria-label="Repository navigation">
         <button type="button" class="repo-tab-btn active" id="tab-btn-code">
           <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
@@ -1241,6 +1285,7 @@ button, input, textarea, select {
           </svg>
           <span>&lt;&gt; Code</span>
         </button>
+
         <button type="button" class="repo-tab-btn" id="tab-btn-commits">
           <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
             <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-5h2zm0-7h-2V7h2z"/>
@@ -1248,16 +1293,26 @@ button, input, textarea, select {
           <span>⏱ Commits</span>
           <span class="tab-badge" id="tab-commits-count">0</span>
         </button>
-        <button type="button" class="repo-tab-btn" id="tab-btn-pages">
+
+        <!-- Pages Tab (Owner Only) -->
+        <button type="button" class="repo-tab-btn" id="tab-btn-pages" style="display:none">
           <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
             <path d="M12 2.5s-6 7.5-6 11.5a6 6 0 0 0 12 0c0-4-6-11.5-6-11.5z"/>
           </svg>
-          <span>🚀 TORCH Pages</span>
+          <span>🚀 Pages (.torch Hosting)</span>
           <span class="pill pill-emerald" id="tab-pages-indicator" style="display:none;padding:0 0.35rem;font-size:0.65rem">Live</span>
+        </button>
+
+        <!-- Settings Tab (Owner Only) -->
+        <button type="button" class="repo-tab-btn" id="tab-btn-settings" style="display:none">
+          <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          <span>⚙️ Settings</span>
         </button>
       </nav>
 
-      <!-- TAB A: CODE EXPLORER & EDITOR -->
+      <!-- TAB 1: CODE EXPLORER & EDITOR -->
       <div id="tab-content-code" class="code-panel-container">
         <div class="code-viewer-card">
           <!-- Multi-file Toolbar -->
@@ -1266,10 +1321,10 @@ button, input, textarea, select {
               <!-- Rendered file tabs -->
             </div>
             <div class="file-actions-group">
-              <button type="button" class="btn btn-secondary btn-sm" id="btn-add-file">
+              <button type="button" class="btn btn-secondary btn-sm owner-only-control" id="btn-add-file">
                 <span>+ New File</span>
               </button>
-              <button type="button" class="btn btn-danger btn-sm" id="btn-del-file" title="Delete current active file">
+              <button type="button" class="btn btn-danger btn-sm owner-only-control" id="btn-del-file" title="Delete current active file">
                 <span>Delete</span>
               </button>
               <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-raw">
@@ -1304,13 +1359,13 @@ button, input, textarea, select {
           </div>
         </div>
 
-        <!-- Push Commit Card -->
-        <div class="commit-box-card">
+        <!-- Push Commit Card (Owner Only) -->
+        <div class="commit-box-card owner-only-control" id="ws-commit-box-card">
           <div class="commit-box-title">
             <svg style="width:18px;height:18px;fill:#f97316" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
             </svg>
-            <span>Push Commit to Telegram Vault</span>
+            <span>Commit Changes to Snapshot</span>
           </div>
           <form id="form-push-commit" class="form-grid">
             <div class="form-grid-2 form-grid">
@@ -1319,8 +1374,8 @@ button, input, textarea, select {
                 <input type="text" class="form-input" id="commit-msg-input" placeholder="e.g. Update UI and fix script syntax" required />
               </div>
               <div class="form-group">
-                <label class="form-label" for="commit-key-input">TORCH-GIT-KEY *</label>
-                <input type="password" class="form-input font-mono" id="commit-key-input" placeholder="Enter repository key" required />
+                <label class="form-label" for="commit-key-input">Optional TORCH-GIT-KEY (Auto-authenticated via TORCH ID)</label>
+                <input type="password" class="form-input font-mono" id="commit-key-input" placeholder="Auto-filled via TORCH ID or enter legacy key" />
               </div>
             </div>
             <div style="display:flex;justify-content:flex-end">
@@ -1335,14 +1390,14 @@ button, input, textarea, select {
         </div>
       </div>
 
-      <!-- TAB B: COMMITS HISTORY -->
+      <!-- TAB 2: COMMITS HISTORY -->
       <div id="tab-content-commits" class="code-panel-container" style="display:none">
         <div class="commits-list" id="ws-commits-history-list">
           <!-- Rendered Commits -->
         </div>
       </div>
 
-      <!-- TAB C: TORCH PAGES HOSTING -->
+      <!-- TAB 3: PAGES (.torch Hosting) (Owner Only) -->
       <div id="tab-content-pages" class="code-panel-container" style="display:none">
         <div class="pages-panel">
           <div class="pages-hero">
@@ -1355,9 +1410,14 @@ button, input, textarea, select {
               <span style="font-size:0.8rem;color:#10b981;font-weight:600;text-transform:uppercase">Active TORCH Pages Domain</span>
               <div class="domain-display-url" id="pages-live-domain-text">mysite.torch</div>
             </div>
-            <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="btn-open-torch-site">
-              <span>Visit .torch Site</span>
-            </a>
+            <div style="display:flex;gap:0.5rem;align-items:center">
+              <button type="button" class="btn btn-danger-outline btn-sm" id="btn-unpublish-pages-direct">
+                <span>Unpublish</span>
+              </button>
+              <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="btn-open-torch-site">
+                <span>Visit .torch Site</span>
+              </a>
+            </div>
           </div>
 
           <form id="form-publish-pages" class="form-grid">
@@ -1368,8 +1428,8 @@ button, input, textarea, select {
                 <span style="font-size:0.75rem;color:#71717a">Will resolve as &lt;name&gt;.torch</span>
               </div>
               <div class="form-group">
-                <label class="form-label" for="pages-key-input">TORCH-GIT-KEY *</label>
-                <input type="password" class="form-input font-mono" id="pages-key-input" placeholder="Repository git key" required />
+                <label class="form-label" for="pages-key-input">Optional TORCH-GIT-KEY (Auto-authenticated via TORCH ID)</label>
+                <input type="password" class="form-input font-mono" id="pages-key-input" placeholder="Auto-filled via TORCH ID" />
               </div>
             </div>
             <div style="display:flex;justify-content:flex-end">
@@ -1381,6 +1441,57 @@ button, input, textarea, select {
               </button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: SETTINGS (DANGER ZONE) (Owner Only) -->
+      <div id="tab-content-settings" class="code-panel-container" style="display:none">
+        <div class="settings-panel">
+          <!-- Repository Credentials Card -->
+          <div class="settings-card">
+            <h3>
+              <svg style="width:18px;height:18px;fill:#f97316" viewBox="0 0 24 24">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+              </svg>
+              <span>Repository Access Key</span>
+            </h3>
+            <p>Your repository write operations are cryptographically verified by your TORCH ID (idHash). If needed for legacy tooling, your raw private TORCH-GIT-KEY is shown below.</p>
+            <div class="key-display-box">
+              <span class="key-text" id="settings-gitkey-display">No legacy key stored (Using TORCH ID)</span>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-settings-key">Copy Key</button>
+            </div>
+          </div>
+
+          <!-- Danger Zone Card -->
+          <div class="settings-card danger-card">
+            <h3>
+              <svg style="width:18px;height:18px;fill:#ef4444" viewBox="0 0 24 24">
+                <path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/>
+              </svg>
+              <span>Danger Zone</span>
+            </h3>
+            <p>Irreversible and destructive actions for this decentralized repository.</p>
+
+            <div class="danger-item">
+              <div class="danger-item-info">
+                <h4>Unpublish .torch Domain</h4>
+                <p>Detach this repository from the live decentralized TORCH routing layer.</p>
+              </div>
+              <button type="button" class="btn btn-danger-outline btn-sm" id="btn-danger-unpublish">
+                Unpublish Domain
+              </button>
+            </div>
+
+            <div class="danger-item">
+              <div class="danger-item-info">
+                <h4>Delete this repository</h4>
+                <p>Permanently remove this repository and all versioned snapshot records from the network.</p>
+              </div>
+              <button type="button" class="btn btn-danger btn-sm" id="btn-danger-delete-repo">
+                Delete Repository
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1396,7 +1507,7 @@ button, input, textarea, select {
               <span>Vault Initialized</span>
             </span>
             <h3 style="font-size:1.25rem;font-weight:700;color:#ffffff">Repository Created &amp; Secured!</h3>
-            <p style="color:#a1a1aa;font-size:0.9rem">Your initial snapshot is securely anchored. Keep this private <strong>TORCH-GIT-KEY</strong> safe; you must provide it to push future commits or publish TORCH Pages.</p>
+            <p style="color:#a1a1aa;font-size:0.9rem">Your initial snapshot is securely anchored. Keep this private <strong>TORCH-GIT-KEY</strong> safe; you can also push future commits or publish TORCH Pages automatically via your verified TORCH ID.</p>
           </div>
           <div class="key-display-box">
             <span class="key-text" id="created-key-display">KEY-XXXX-XXXX-XXXX</span>
@@ -1481,139 +1592,303 @@ button, input, textarea, select {
   </div>
 </div>
 
+<!-- Modal for Delete Repo Confirmation -->
+<div class="modal-overlay" id="modal-delete-repo" role="dialog" aria-modal="true">
+  <div class="modal-card" style="border-color: rgba(239, 68, 68, 0.5)">
+    <div class="modal-header" style="color: #ef4444">Delete Repository</div>
+    <p style="color: #a1a1aa; font-size: 0.875rem; margin-bottom: 1rem;">
+      This action <strong style="color: #ffffff">CANNOT</strong> be undone. This will permanently delete the <strong id="delete-modal-reponame" style="color: #ffffff">owner/repo</strong> repository and remove all version history from Telegram Vault.
+    </p>
+    <div class="form-group">
+      <label class="form-label" for="delete-confirm-input">Please type the repository name to confirm:</label>
+      <input type="text" class="form-input font-mono" id="delete-confirm-input" placeholder="repo-name" autocomplete="off" />
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary btn-sm" id="btn-delete-modal-cancel">Cancel</button>
+      <button type="button" class="btn btn-danger btn-sm" id="btn-delete-modal-confirm" disabled>I understand the consequences, delete this repository</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Manual TORCH ID Login / Seed Entry -->
+<div class="modal-overlay" id="modal-torch-login" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-header">TORCH ID Sovereign Authentication</div>
+    <p style="color: #a1a1aa; font-size: 0.85rem; margin-bottom: 1rem;">
+      Authenticate with your 8-word cryptographic seed phrase to verify repository ownership and commit permissions.
+    </p>
+    <div class="form-group">
+      <label class="form-label" for="login-seed-input">8-Word Seed Phrase</label>
+      <textarea class="form-input font-mono" id="login-seed-input" rows="3" placeholder="word1 word2 word3 word4 word5 word6 word7 word8" spellcheck="false"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary btn-sm" id="btn-login-modal-cancel">Cancel</button>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-login-modal-submit">Verify &amp; Authenticate</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast Container -->
 <div class="toast-shelf" id="toast-shelf" aria-live="polite"></div>
 
-<!-- Application Logic (Zero Backticks & Strict ES Concatenation) -->
-<script>
-'use strict';
-
-// Constants & API Configuration
-var API_BASE = 'https://torch-git-api.rh22042010.workers.dev';
-var LOCAL_STORAGE_KEY_STORE = 'torch_forge_vault_keys';
-
-// Global Application State
-var AppState = {
-  currentView: 'explore',
-  searchQuery: '',
-  repos: [],
-  currentRepo: null,
-  activeFilename: 'index.html',
-  keysStore: {}
-};
-
-// HTML Escaping Utility for XSS prevention
-function escapeHtml(str) {
-  if (typeof str !== 'string') {
-    return '';
-  }
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
-
-// Relative Time Formatter
-function formatRelativeTime(dateInput) {
-  if (!dateInput) return 'recently';
-  var past = new Date(dateInput).getTime();
-  if (isNaN(past)) return 'recently';
-  var diffMs = Date.now() - past;
-  var diffSec = Math.floor(diffMs / 1000);
-  if (diffSec < 60) return 'just now';
-  var diffMin = Math.floor(diffSec / 60);
-  if (diffMin < 60) return diffMin + 'm ago';
-  var diffHour = Math.floor(diffMin / 60);
-  if (diffHour < 24) return diffHour + 'h ago';
-  var diffDays = Math.floor(diffHour / 24);
-  return diffDays + 'd ago';
-}
-
-// Toast Notification Engine
-function showToast(message, type) {
-  var shelf = document.getElementById('toast-shelf');
-  if (!shelf) return;
-  var toast = document.createElement('div');
-  var toastTypeClass = (type === 'error') ? 'toast-error' : 'toast-success';
-  toast.className = 'toast ' + toastTypeClass;
-  
-  var dot = document.createElement('span');
-  dot.className = 'status-dot toast-dot';
-  var msgSpan = document.createElement('span');
-  msgSpan.textContent = message;
-
-  toast.appendChild(dot);
-  toast.appendChild(msgSpan);
-  shelf.appendChild(toast);
-
-  setTimeout(function() {
-    toast.classList.add('show');
-  }, 10);
-
-  setTimeout(function() {
-    toast.classList.remove('show');
-    setTimeout(function() {
-      if (toast.parentNode) {
-        toast.parentNode.removeChild(toast);
-      }
-    }, 250);
-  }, 3500);
-}
-
-// Local Key Storage Helpers
-function loadStoredKeys() {
+<!-- TORCH ID Client Script Module -->
+<script type="module">
   try {
-    var raw = window.localStorage.getItem(LOCAL_STORAGE_KEY_STORE);
-    if (raw) {
-      AppState.keysStore = JSON.parse(raw);
+    const mod = await import('https://' + 'cdn.jsdelivr.net' + '/gh/rh-devlab/torch-dns@main/torch-id/torch-id-client.js');
+    if (mod && typeof mod.deriveIdHash === 'function') {
+      window.TorchIDClient = mod;
     }
   } catch (err) {
-    AppState.keysStore = {};
+    console.warn('TORCH ID module remote load notice:', err);
   }
-}
+  window.dispatchEvent(new CustomEvent('torch-id-module-ready'));
+</script>
 
-function storeKey(repoId, key) {
-  if (!repoId || !key) return;
-  AppState.keysStore[repoId] = key;
-  try {
-    window.localStorage.setItem(LOCAL_STORAGE_KEY_STORE, JSON.stringify(AppState.keysStore));
-  } catch (err) {}
-}
+<!-- Application Controller (Strict ES2025+, .at(0)/.at(-1), Zero Bracket Indexing, Await Async) -->
+<script>
+(() => {
+  'use strict';
 
-function getKeyForRepo(repoId) {
-  return AppState.keysStore[repoId] || '';
-}
+  // 1. API Configuration
+  const API_BASE = 'https://' + 'torch-git-api' + '.' + 'rh22042010' + '.workers.dev';
+  const LOCAL_STORAGE_KEY_STORE = 'torch_forge_vault_keys';
 
-// View Routing Manager
-function switchView(viewName) {
-  AppState.currentView = viewName;
-  var sections = document.querySelectorAll('.view-section');
-  for (var i = 0; i < sections.length; i++) {
-    sections[i].classList.remove('active');
-  }
-  var target = document.getElementById('view-' + viewName);
-  if (target) {
-    target.classList.add('active');
-  }
-  window.scrollTo(0, 0);
-}
+  // Global State
+  const AppState = {
+    currentView: 'explore',
+    searchQuery: '',
+    repos: [],
+    currentRepo: null,
+    activeFilename: 'index.html',
+    keysStore: {},
+    currentUser: null,  // { username: '', displayName: '', seed: '', idHash: '' }
+    idHash: ''
+  };
 
-// Fetch Public Repositories from Worker API
-function fetchRepositories() {
-  var grid = document.getElementById('explore-repo-grid');
-  grid.innerHTML = '<div class="loading-box"><div class="spinner"></div><p>Fetching decentralized repositories from TORCH Network...</p></div>';
+  // 2. Cryptographic Helper: Fallback deriveIdHash with Web Crypto SHA-256
+  const deriveIdHashFallback = async (seed) => {
+    const normalized = (seed || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    const encoder = new TextEncoder();
+    const data = encoder.encode(normalized);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
 
-  fetch(API_BASE + '/repos')
-    .then(function(res) {
+  const getDerivedIdHash = async (seed) => {
+    if (!seed) return '';
+    if (window.TorchIDClient && typeof window.TorchIDClient.deriveIdHash === 'function') {
+      try {
+        return await window.TorchIDClient.deriveIdHash(seed);
+      } catch (e) {
+        console.warn('deriveIdHash module execution fallback:', e);
+      }
+    }
+    return await deriveIdHashFallback(seed);
+  };
+
+  // Helper: Format initials using modern .at()
+  const getInitials = (str) => {
+    if (!str) return '?';
+    const parts = str.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      const first = parts.at(0) ? parts.at(0).charAt(0) : '';
+      const second = parts.at(1) ? parts.at(1).charAt(0) : '';
+      return (first + second).toUpperCase() || '?';
+    }
+    return str.slice(0, 2).toUpperCase();
+  };
+
+  // HTML Escaping Utility for XSS Prevention
+  const escapeHtml = (str) => {
+    if (typeof str !== 'string') return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  };
+
+  // Relative Time Formatter
+  const formatRelativeTime = (dateInput) => {
+    if (!dateInput) return 'recently';
+    const past = new Date(dateInput).getTime();
+    if (isNaN(past)) return 'recently';
+    const diffMs = Date.now() - past;
+    const diffSec = Math.floor(diffMs / 1000);
+    if (diffSec < 60) return 'just now';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return diffMin + 'm ago';
+    const diffHour = Math.floor(diffMin / 60);
+    if (diffHour < 24) return diffHour + 'h ago';
+    const diffDays = Math.floor(diffHour / 24);
+    return diffDays + 'd ago';
+  };
+
+  // Toast Notification Engine
+  const showToast = (message, type = 'success') => {
+    const shelf = document.getElementById('toast-shelf');
+    if (!shelf) return;
+    const toast = document.createElement('div');
+    const toastTypeClass = (type === 'error') ? 'toast-error' : 'toast-success';
+    toast.className = 'toast ' + toastTypeClass;
+
+    const dot = document.createElement('span');
+    dot.className = 'status-dot toast-dot';
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = message;
+
+    toast.appendChild(dot);
+    toast.appendChild(msgSpan);
+    shelf.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 250);
+    }, 3500);
+  };
+
+  // Local Key Storage Helpers
+  const loadStoredKeys = () => {
+    try {
+      const raw = window.localStorage.getItem(LOCAL_STORAGE_KEY_STORE);
+      if (raw) {
+        AppState.keysStore = JSON.parse(raw);
+      }
+    } catch (err) {
+      AppState.keysStore = {};
+    }
+  };
+
+  const storeKey = (repoId, key) => {
+    if (!repoId || !key) return;
+    AppState.keysStore[repoId] = key;
+    try {
+      window.localStorage.setItem(LOCAL_STORAGE_KEY_STORE, JSON.stringify(AppState.keysStore));
+    } catch (err) {}
+  };
+
+  const getKeyForRepo = (repoId) => {
+    return AppState.keysStore[repoId] || '';
+  };
+
+  // View Routing Manager
+  const switchView = (viewName) => {
+    AppState.currentView = viewName;
+    const sections = document.querySelectorAll('.view-section');
+    for (let i = 0; i < sections.length; i++) {
+      sections.item(i).classList.remove('active');
+    }
+    const target = document.getElementById('view-' + viewName);
+    if (target) {
+      target.classList.add('active');
+    }
+    window.scrollTo(0, 0);
+  };
+
+  // User Authentication & PostMessage Protocol
+  const updateAuthHeaderUI = () => {
+    const label = document.getElementById('header-username-label');
+    const container = document.getElementById('header-avatar-container');
+    const createOwnerInput = document.getElementById('create-owner');
+
+    if (AppState.currentUser && AppState.currentUser.username) {
+      const uname = AppState.currentUser.username;
+      label.textContent = '@' + uname;
+      if (createOwnerInput) {
+        createOwnerInput.value = uname;
+      }
+      container.innerHTML = '';
+      if (AppState.currentUser.avatar && AppState.currentUser.avatar.startsWith('http')) {
+        const img = document.createElement('img');
+        img.src = AppState.currentUser.avatar;
+        img.alt = uname;
+        container.appendChild(img);
+      } else {
+        const span = document.createElement('span');
+        span.textContent = getInitials(AppState.currentUser.displayName || uname);
+        container.appendChild(span);
+      }
+    } else {
+      label.textContent = 'Log in TORCH ID';
+      container.innerHTML = '<span>?</span>';
+    }
+  };
+
+  const setAuthenticatedUser = async (profile, seed) => {
+    let idHash = '';
+    if (seed) {
+      idHash = await getDerivedIdHash(seed);
+    }
+    AppState.currentUser = {
+      username: (profile.username || 'sovereign').toLowerCase().trim(),
+      displayName: profile.displayName || profile.username || 'Sovereign',
+      bio: profile.bio || '',
+      avatar: profile.avatar || '',
+      seed: seed || ''
+    };
+    AppState.idHash = idHash;
+    updateAuthHeaderUI();
+
+    // If currently on a repo workspace, re-verify ownership permissions
+    if (AppState.currentRepo) {
+      applyOwnershipUI();
+    }
+  };
+
+  const initAuthSession = async () => {
+    // Check localStorage & sessionStorage
+    try {
+      const raw = window.localStorage.getItem('torch_id_session') || window.sessionStorage.getItem('torch_id_session');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && (parsed.profile || parsed.username)) {
+          const profile = parsed.profile || parsed;
+          const seed = parsed.seed || '';
+          await setAuthenticatedUser(profile, seed);
+        }
+      }
+    } catch (e) {
+      console.warn('TORCH ID local session check note:', e);
+    }
+
+    // Handshake with TORCH Browser via PostMessage
+            window.addEventListener('message', async (event) => {
+      if (event.data && event.data.type === 'TORCH_ID_SESSION') {
+        const profile = event.data.profile;
+        const existingSeed = (AppState.currentUser && AppState.currentUser.seed) ? AppState.currentUser.seed : '';
+        const seed = event.data.seed || existingSeed;
+        if (profile) {
+          await setAuthenticatedUser(profile, seed);
+        }
+      }
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'TORCH_ID_REQUEST' }, '*');
+    }
+  };
+
+  // Fetch Public Repositories (Worker v3.0 GET /repos)
+  const fetchRepositories = async () => {
+    const grid = document.getElementById('explore-repo-grid');
+    grid.innerHTML = '<div class="loading-box"><div class="spinner"></div><p>Fetching decentralized repositories from TORCH Network...</p></div>';
+
+    try {
+      const res = await fetch(API_BASE + '/repos');
       if (!res.ok) {
         throw new Error('HTTP ' + res.status);
       }
-      return res.json();
-    })
-    .then(function(data) {
-      var list = [];
+      const data = await res.json();
+      let list = [];
       if (Array.isArray(data)) {
         list = data;
       } else if (data && Array.isArray(data.repos)) {
@@ -1624,163 +1899,198 @@ function fetchRepositories() {
       AppState.repos = list;
       renderExploreRepos();
       updateNetworkStats();
-    })
-    .catch(function(err) {
+    } catch (err) {
       console.warn('API fetch notice:', err);
       AppState.repos = [];
       renderExploreRepos();
       updateNetworkStats();
       showToast('Could not reach TORCH network. Please check your connection.', 'error');
+    }
+  };
+
+  // Update Stats Banner
+  const updateNetworkStats = () => {
+    const totalReposElem = document.getElementById('stat-total-repos');
+    const totalPagesElem = document.getElementById('stat-total-pages');
+    const countPill = document.getElementById('explore-count-pill');
+
+    const totalRepos = AppState.repos.length;
+    let totalPages = 0;
+    for (let i = 0; i < AppState.repos.length; i++) {
+      if (AppState.repos.at(i).published_domain) {
+        totalPages++;
+      }
+    }
+
+    if (totalReposElem) totalReposElem.textContent = String(totalRepos);
+    if (totalPagesElem) totalPagesElem.textContent = String(totalPages);
+    if (countPill) countPill.textContent = totalRepos + ' repos';
+  };
+
+  // Render Explore Repositories Grid
+  const renderExploreRepos = () => {
+    const grid = document.getElementById('explore-repo-grid');
+    if (!grid) return;
+
+    const q = AppState.searchQuery.trim().toLowerCase();
+    const filtered = AppState.repos.filter((r) => {
+      if (!q) return true;
+      const owner = (r.owner || '').toLowerCase();
+      const name = (r.name || '').toLowerCase();
+      const desc = (r.description || '').toLowerCase();
+      const full = owner + '/' + name;
+      return (full.indexOf(q) !== -1 || desc.indexOf(q) !== -1);
     });
-}
 
-// Update Header Statistics
-function updateNetworkStats() {
-  var totalReposElem = document.getElementById('stat-total-repos');
-  var totalPagesElem = document.getElementById('stat-total-pages');
-  var countPill = document.getElementById('explore-count-pill');
-
-  var totalRepos = AppState.repos.length;
-  var totalPages = 0;
-  for (var i = 0; i < AppState.repos.length; i++) {
-    if (AppState.repos[i].published_domain) {
-      totalPages++;
-    }
-  }
-
-  if (totalReposElem) totalReposElem.textContent = String(totalRepos);
-  if (totalPagesElem) totalPagesElem.textContent = String(totalPages);
-  if (countPill) countPill.textContent = totalRepos + ' repos';
-}
-
-// Render Explore Repositories Grid
-function renderExploreRepos() {
-  var grid = document.getElementById('explore-repo-grid');
-  if (!grid) return;
-
-  var q = AppState.searchQuery.trim().toLowerCase();
-  var filtered = AppState.repos.filter(function(r) {
-    if (!q) return true;
-    var owner = (r.owner || '').toLowerCase();
-    var name = (r.name || '').toLowerCase();
-    var desc = (r.description || '').toLowerCase();
-    var full = owner + '/' + name;
-    return (full.indexOf(q) !== -1 || desc.indexOf(q) !== -1);
-  });
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-box"><p style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem">No public repositories found.</p><p style="font-size:0.85rem">Create the first repository on the network using the "+ New Repo" button.</p></div>';
-    return;
-  }
-
-  var html = '';
-  for (var i = 0; i < filtered.length; i++) {
-    var repo = filtered[i];
-    var repoOwner = escapeHtml(repo.owner || 'anonymous');
-    var repoName = escapeHtml(repo.name || 'unnamed-repo');
-    var repoDesc = escapeHtml(repo.description || 'No description provided.');
-    var commitCount = repo.commits_count || (repo.commits ? repo.commits.length : 1);
-    var updatedTime = formatRelativeTime(repo.updated_at || repo.timestamp || Date.now());
-
-    var standardRepoId = (repo.owner || '') + '--' + (repo.name || '');
-
-    var publishedBadge = '';
-    if (repo.published_domain) {
-      publishedBadge = '<span class="pill pill-emerald"><span class="status-dot"></span><span>' + escapeHtml(repo.published_domain) + '</span></span>';
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="empty-box"><p style="font-size:1.1rem;font-weight:600;margin-bottom:0.3rem">No public repositories found.</p><p style="font-size:0.85rem">Create the first repository on the network using the "+ New Repo" button.</p></div>';
+      return;
     }
 
-    html += '<div class="repo-card" data-repo-id="' + escapeHtml(standardRepoId) + '">' +
-      '<div class="repo-card-top">' +
-        '<div class="repo-title-row">' +
-          '<svg class="repo-icon-svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/></svg>' +
-          '<span class="repo-name-link">' + repoOwner + ' / ' + repoName + '</span>' +
-          '<span class="pill pill-gray">Public</span>' +
+    let html = '';
+    for (let i = 0; i < filtered.length; i++) {
+      const repo = filtered.at(i);
+      const repoOwner = escapeHtml(repo.owner || 'anonymous');
+      const repoName = escapeHtml(repo.name || 'unnamed-repo');
+      const repoDesc = escapeHtml(repo.description || 'No description provided.');
+      const commitCount = repo.commits_count || (repo.commits ? repo.commits.length : 1);
+      const updatedTime = formatRelativeTime(repo.updated_at || repo.timestamp || Date.now());
+
+      const standardRepoId = (repo.owner || '') + '--' + (repo.name || '');
+
+      let publishedBadge = '';
+      if (repo.published_domain) {
+        publishedBadge = '<span class="pill pill-emerald"><span class="status-dot"></span><span>' + escapeHtml(repo.published_domain) + '</span></span>';
+      }
+
+      html += '<div class="repo-card" data-repo-id="' + escapeHtml(standardRepoId) + '">' +
+        '<div class="repo-card-top">' +
+          '<div class="repo-title-row">' +
+            '<svg class="repo-icon-svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/></svg>' +
+            '<span class="repo-name-link">' + repoOwner + ' / ' + repoName + '</span>' +
+            '<span class="pill pill-gray">Public</span>' +
+          '</div>' +
+          publishedBadge +
         '</div>' +
-        publishedBadge +
-      '</div>' +
-      '<p class="repo-desc">' + repoDesc + '</p>' +
-      '<div class="repo-meta-row">' +
-        '<span class="meta-item">' +
-          '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-5h2zm0-7h-2V7h2z"/></svg>' +
-          '<span>' + commitCount + ' commits</span>' +
-        '</span>' +
-        '<span class="meta-item">' +
-          '<span>Updated ' + updatedTime + '</span>' +
-        '</span>' +
-      '</div>' +
-    '</div>';
-  }
-
-  grid.innerHTML = html;
-
-  // Bind Card Click Events
-  var cards = grid.querySelectorAll('.repo-card');
-  for (var j = 0; j < cards.length; j++) {
-    cards[j].addEventListener('click', function(e) {
-      var repoId = this.getAttribute('data-repo-id');
-      openRepositoryWorkspace(repoId);
-    });
-  }
-}
-
-// Open and Populate Repository Workspace with Real Telegram Vault Files
-function openRepositoryWorkspace(repoId) {
-  var found = null;
-  for (var i = 0; i < AppState.repos.length; i++) {
-    var cur = AppState.repos[i];
-    var curId = (cur.owner || '') + '--' + (cur.name || '');
-    if (curId === repoId) {
-      found = cur;
-      break;
+        '<p class="repo-desc">' + repoDesc + '</p>' +
+        '<div class="repo-meta-row">' +
+          '<span class="meta-item">' +
+            '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-5h2zm0-7h-2V7h2z"/></svg>' +
+            '<span>' + commitCount + ' commits</span>' +
+          '</span>' +
+          '<span class="meta-item">' +
+            '<span>Updated ' + updatedTime + '</span>' +
+          '</span>' +
+        '</div>' +
+      '</div>';
     }
-  }
 
-  if (!found) {
-    // If not in explore cache, construct basic metadata object from repoId
-    var parts = repoId.split('--');
-    found = {
-      owner: parts[0] || 'anonymous',
-      name: parts.slice(1).join('--') || 'repo',
-      description: '',
-      files: {},
-      commits: []
-    };
-  }
+    grid.innerHTML = html;
 
-  AppState.currentRepo = found;
+    const cards = grid.querySelectorAll('.repo-card');
+    for (let j = 0; j < cards.length; j++) {
+      cards.item(j).addEventListener('click', function() {
+        const repoId = this.getAttribute('data-repo-id');
+        openRepositoryWorkspace(repoId);
+      });
+    }
+  };
 
-  // Render Skeleton Header
-  document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
-  document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
-  document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'Fetching vault metadata...';
+  // Ownership Check
+  const isRepoOwner = () => {
+    if (!AppState.currentRepo) return false;
+    if (!AppState.currentUser || !AppState.currentUser.username) return false;
+    return (AppState.currentUser.username.toLowerCase() === (AppState.currentRepo.owner || '').toLowerCase());
+  };
 
-  // Pre-fill Git Key if saved
-  var savedKey = getKeyForRepo(repoId);
-  var commitKeyInput = document.getElementById('commit-key-input');
-  var pagesKeyInput = document.getElementById('pages-key-input');
-  if (commitKeyInput) commitKeyInput.value = savedKey;
-  if (pagesKeyInput) pagesKeyInput.value = savedKey;
+  // Strict Ownership UI Toggle
+  const applyOwnershipUI = () => {
+    const isOwner = isRepoOwner();
+    const readonlyNotice = document.getElementById('ws-readonly-notice');
+    const tabPages = document.getElementById('tab-btn-pages');
+    const tabSettings = document.getElementById('tab-btn-settings');
+    const editor = document.getElementById('editor-code-input');
+    const ownerElements = document.querySelectorAll('.owner-only-control');
 
-  // Set Workspace View & Reset Tab
-  activateSubTab('code');
-  switchView('workspace');
+    if (isOwner) {
+      if (readonlyNotice) readonlyNotice.style.display = 'none';
+      if (tabPages) tabPages.style.display = 'inline-flex';
+      if (tabSettings) tabSettings.style.display = 'inline-flex';
+      if (editor) editor.removeAttribute('readonly');
+      for (let i = 0; i < ownerElements.length; i++) {
+        ownerElements.item(i).style.display = '';
+      }
+    } else {
+      if (readonlyNotice) readonlyNotice.style.display = 'flex';
+      if (tabPages) tabPages.style.display = 'none';
+      if (tabSettings) tabSettings.style.display = 'none';
+      if (editor) editor.setAttribute('readonly', 'true');
+      for (let i = 0; i < ownerElements.length; i++) {
+        ownerElements.item(i).style.display = 'none';
+      }
 
-  // Loading Indicator in File View
-  var tabsContainer = document.getElementById('ws-file-tabs');
-  if (tabsContainer) {
-    tabsContainer.innerHTML = '<span style="color:#71717a;font-size:0.8rem;padding:0.35rem">Hydrating snapshot files from Telegram Vault...</span>';
-  }
+      // If viewing pages or settings tab while not owner, fall back to code
+      if (AppState.activeSubTab === 'pages' || AppState.activeSubTab === 'settings') {
+        activateSubTab('code');
+      }
+    }
+  };
 
-  // Fetch Full Repo Snapshot from Cloudflare Worker
-  fetch(API_BASE + '/repo?id=' + encodeURIComponent(repoId))
-    .then(function(res) {
+  // Open and Populate Repository Workspace (Worker v3.0 GET /repo?id=)
+  const openRepositoryWorkspace = async (repoId) => {
+    let found = null;
+    for (let i = 0; i < AppState.repos.length; i++) {
+      const cur = AppState.repos.at(i);
+      const curId = (cur.owner || '') + '--' + (cur.name || '');
+      if (curId === repoId) {
+        found = cur;
+        break;
+      }
+    }
+
+    if (!found) {
+      const parts = repoId.split('--');
+      found = {
+        owner: parts.at(0) || 'anonymous',
+        name: parts.slice(1).join('--') || 'repo',
+        description: '',
+        files: {},
+        commits: []
+      };
+    }
+
+    AppState.currentRepo = found;
+
+    document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
+    document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
+    document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'Fetching vault metadata...';
+
+    // Populate stored key if exists
+    const savedKey = getKeyForRepo(repoId);
+    const commitKeyInput = document.getElementById('commit-key-input');
+    const pagesKeyInput = document.getElementById('pages-key-input');
+    const settingsKeyDisplay = document.getElementById('settings-gitkey-display');
+    if (commitKeyInput) commitKeyInput.value = savedKey;
+    if (pagesKeyInput) pagesKeyInput.value = savedKey;
+    if (settingsKeyDisplay) {
+      settingsKeyDisplay.textContent = savedKey || 'Auto-authenticated via TORCH ID (' + (AppState.idHash ? AppState.idHash.slice(0, 12) + '...' : 'Signed') + ')';
+    }
+
+    activateSubTab('code');
+    switchView('workspace');
+
+    const tabsContainer = document.getElementById('ws-file-tabs');
+    if (tabsContainer) {
+      tabsContainer.innerHTML = '<span style="color:#71717a;font-size:0.8rem;padding:0.35rem">Hydrating snapshot files from Telegram Vault...</span>';
+    }
+
+    try {
+      const res = await fetch(API_BASE + '/repo?id=' + encodeURIComponent(repoId));
       if (!res.ok) {
         throw new Error('HTTP ' + res.status);
       }
-      return res.json();
-    })
-    .then(function(data) {
-      var repoData = data.repo || data;
+      const data = await res.json();
+      const repoData = data.repo || data;
 
       if (repoData.description) {
         AppState.currentRepo.description = repoData.description;
@@ -1797,10 +2107,8 @@ function openRepositoryWorkspace(repoId) {
       }
 
       hydrateWorkspaceUI();
-    })
-    .catch(function(err) {
+    } catch (err) {
       console.warn('Vault fetch note:', err);
-      // Fallback: If empty or offline, ensure minimal index.html exists
       if (!AppState.currentRepo.files || typeof AppState.currentRepo.files !== 'object' || Object.keys(AppState.currentRepo.files).length === 0) {
         AppState.currentRepo.files = {
           'index.html': '<!DOCTYPE html>\n<html>\n<head><title>' + escapeHtml(AppState.currentRepo.name) + '</title></head>\n<body>\n  <h1>' + escapeHtml(AppState.currentRepo.name) + '</h1>\n</body>\n</html>'
@@ -1808,832 +2116,998 @@ function openRepositoryWorkspace(repoId) {
       }
       hydrateWorkspaceUI();
       showToast('Loaded local vault snapshot buffer', 'success');
-    });
-}
-
-// Hydrate UI Elements after Repo Data is Ready
-function hydrateWorkspaceUI() {
-  document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
-  document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
-  document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'No description provided.';
-
-  var pubBadge = document.getElementById('ws-published-badge');
-  var pubDomainSpan = document.getElementById('ws-published-domain');
-  var pagesLiveBox = document.getElementById('pages-live-box');
-  var pagesLiveDomainText = document.getElementById('pages-live-domain-text');
-  var tabPagesIndicator = document.getElementById('tab-pages-indicator');
-
-  if (AppState.currentRepo.published_domain) {
-    pubBadge.style.display = 'inline-flex';
-    pubDomainSpan.textContent = AppState.currentRepo.published_domain;
-    pagesLiveBox.style.display = 'flex';
-    pagesLiveDomainText.textContent = AppState.currentRepo.published_domain;
-    tabPagesIndicator.style.display = 'inline-flex';
-  } else {
-    pubBadge.style.display = 'none';
-    pagesLiveBox.style.display = 'none';
-    tabPagesIndicator.style.display = 'none';
-  }
-
-  // Bracket index [0] to select first file
-  var fileKeys = Object.keys(AppState.currentRepo.files || {});
-  AppState.activeFilename = (fileKeys.length > 0) ? fileKeys[0] : 'index.html';
-
-  renderFileTabs();
-  loadFileIntoEditor(AppState.activeFilename);
-  renderReadmePreview();
-  renderCommitsHistory();
-}
-
-// Sub Tab Switching
-function activateSubTab(tabName) {
-  var tabButtons = [
-    { name: 'code', btn: document.getElementById('tab-btn-code'), content: document.getElementById('tab-content-code') },
-    { name: 'commits', btn: document.getElementById('tab-btn-commits'), content: document.getElementById('tab-content-commits') },
-    { name: 'pages', btn: document.getElementById('tab-btn-pages'), content: document.getElementById('tab-content-pages') }
-  ];
-
-  for (var i = 0; i < tabButtons.length; i++) {
-    var t = tabButtons[i];
-    if (t.name === tabName) {
-      if (t.btn) t.btn.classList.add('active');
-      if (t.content) t.content.style.display = 'flex';
-    } else {
-      if (t.btn) t.btn.classList.remove('active');
-      if (t.content) t.content.style.display = 'none';
     }
-  }
-}
+  };
 
-// Render File Tabs in Workspace Code Toolbar
-function renderFileTabs() {
-  var container = document.getElementById('ws-file-tabs');
-  if (!container || !AppState.currentRepo || !AppState.currentRepo.files) return;
+  const hydrateWorkspaceUI = () => {
+    document.getElementById('ws-owner-name').textContent = AppState.currentRepo.owner;
+    document.getElementById('ws-repo-name').textContent = AppState.currentRepo.name;
+    document.getElementById('ws-repo-desc').textContent = AppState.currentRepo.description || 'No description provided.';
 
-  var filenames = Object.keys(AppState.currentRepo.files);
-  var html = '';
-  for (var i = 0; i < filenames.length; i++) {
-    var fn = filenames[i];
-    var activeClass = (fn === AppState.activeFilename) ? ' active' : '';
-    html += '<button type="button" class="file-tab' + activeClass + '" data-filename="' + escapeHtml(fn) + '">' +
-      '<svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>' +
-      '<span>' + escapeHtml(fn) + '</span>' +
-    '</button>';
-  }
-  container.innerHTML = html;
+    const pubBadge = document.getElementById('ws-published-badge');
+    const pubDomainSpan = document.getElementById('ws-published-domain');
+    const pagesLiveBox = document.getElementById('pages-live-box');
+    const pagesLiveDomainText = document.getElementById('pages-live-domain-text');
+    const tabPagesIndicator = document.getElementById('tab-pages-indicator');
 
-  // Bind file tab clicks
-  var tabs = container.querySelectorAll('.file-tab');
-  for (var j = 0; j < tabs.length; j++) {
-    tabs[j].addEventListener('click', function() {
-      saveCurrentEditorBuffer();
-      var selectedFile = this.getAttribute('data-filename');
-      AppState.activeFilename = selectedFile;
-      renderFileTabs();
-      loadFileIntoEditor(selectedFile);
-    });
-  }
-}
+    if (AppState.currentRepo.published_domain) {
+      pubBadge.style.display = 'inline-flex';
+      pubDomainSpan.textContent = AppState.currentRepo.published_domain;
+      pagesLiveBox.style.display = 'flex';
+      pagesLiveDomainText.textContent = AppState.currentRepo.published_domain;
+      tabPagesIndicator.style.display = 'inline-flex';
+    } else {
+      pubBadge.style.display = 'none';
+      pagesLiveBox.style.display = 'none';
+      tabPagesIndicator.style.display = 'none';
+    }
 
-// Buffer current textarea into memory state
-function saveCurrentEditorBuffer() {
-  if (!AppState.currentRepo || !AppState.currentRepo.files) return;
-  var editor = document.getElementById('editor-code-input');
-  if (editor && AppState.activeFilename) {
-    AppState.currentRepo.files[AppState.activeFilename] = editor.value;
-  }
-}
+    // Modern .at(0) for first file key
+    const fileKeys = Object.keys(AppState.currentRepo.files || {});
+    AppState.activeFilename = fileKeys.length > 0 ? (fileKeys.at(0) || 'index.html') : 'index.html';
 
-// Load File Content into Live Editor
-function loadFileIntoEditor(filename) {
-  var editor = document.getElementById('editor-code-input');
-  var filenameLabel = document.getElementById('editor-active-filename');
-  if (!editor || !AppState.currentRepo || !AppState.currentRepo.files) return;
+    renderFileTabs();
+    loadFileIntoEditor(AppState.activeFilename);
+    renderReadmePreview();
+    renderCommitsHistory();
+    applyOwnershipUI();
+  };
 
-  var content = AppState.currentRepo.files[filename] || '';
-  editor.value = content;
-  if (filenameLabel) filenameLabel.textContent = filename;
+  // GitHub 4-Sub-Tab Switching
+  const activateSubTab = (tabName) => {
+    AppState.activeSubTab = tabName;
+    const tabButtons = [
+      { name: 'code', btn: document.getElementById('tab-btn-code'), content: document.getElementById('tab-content-code') },
+      { name: 'commits', btn: document.getElementById('tab-btn-commits'), content: document.getElementById('tab-content-commits') },
+      { name: 'pages', btn: document.getElementById('tab-btn-pages'), content: document.getElementById('tab-content-pages') },
+      { name: 'settings', btn: document.getElementById('tab-btn-settings'), content: document.getElementById('tab-content-settings') }
+    ];
 
-  updateLineNumbers();
-}
+    for (let i = 0; i < tabButtons.length; i++) {
+      const t = tabButtons.at(i);
+      if (t.name === tabName) {
+        if (t.btn) t.btn.classList.add('active');
+        if (t.content) t.content.style.display = 'flex';
+      } else {
+        if (t.btn) t.btn.classList.remove('active');
+        if (t.content) t.content.style.display = 'none';
+      }
+    }
+  };
 
-// Dynamic Line Counter & Metrics
-function updateLineNumbers() {
-  var editor = document.getElementById('editor-code-input');
-  var lineContainer = document.getElementById('editor-line-numbers');
-  var metricsLabel = document.getElementById('editor-metrics-label');
-  if (!editor || !lineContainer) return;
+  // Render File Tabs in Code Toolbar
+  const renderFileTabs = () => {
+    const container = document.getElementById('ws-file-tabs');
+    if (!container || !AppState.currentRepo || !AppState.currentRepo.files) return;
 
-  var text = editor.value;
-  var linesCount = text.split('\n').length;
-  var bytesCount = (new Blob([text])).size;
+    const filenames = Object.keys(AppState.currentRepo.files);
+    let html = '';
+    for (let i = 0; i < filenames.length; i++) {
+      const fn = filenames.at(i);
+      const activeClass = (fn === AppState.activeFilename) ? ' active' : '';
+      html += '<button type="button" class="file-tab' + activeClass + '" data-filename="' + escapeHtml(fn) + '">' +
+        '<svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>' +
+        '<span>' + escapeHtml(fn) + '</span>' +
+      '</button>';
+    }
+    container.innerHTML = html;
 
-  var linesHtml = '';
-  for (var i = 1; i <= linesCount; i++) {
-    linesHtml += i + '<br>';
-  }
-  lineContainer.innerHTML = linesHtml;
+    const tabs = container.querySelectorAll('.file-tab');
+    for (let j = 0; j < tabs.length; j++) {
+      tabs.item(j).addEventListener('click', function() {
+        saveCurrentEditorBuffer();
+        const selectedFile = this.getAttribute('data-filename');
+        AppState.activeFilename = selectedFile;
+        renderFileTabs();
+        loadFileIntoEditor(selectedFile);
+      });
+    }
+  };
 
-  var formattedSize = (bytesCount < 1024) ? (bytesCount + ' B') : ((bytesCount / 1024).toFixed(1) + ' KB');
-  if (metricsLabel) {
-    metricsLabel.textContent = linesCount + ' lines · ' + formattedSize;
-  }
-}
+  const saveCurrentEditorBuffer = () => {
+    if (!AppState.currentRepo || !AppState.currentRepo.files) return;
+    const editor = document.getElementById('editor-code-input');
+    if (editor && AppState.activeFilename) {
+      AppState.currentRepo.files[AppState.activeFilename] = editor.value;
+    }
+  };
 
-// Safe Markdown Parser for README.md
-function renderReadmePreview() {
-  var readmeCard = document.getElementById('ws-readme-card');
-  var readmeRendered = document.getElementById('ws-readme-rendered');
-  if (!readmeCard || !readmeRendered || !AppState.currentRepo || !AppState.currentRepo.files) return;
+  const loadFileIntoEditor = (filename) => {
+    const editor = document.getElementById('editor-code-input');
+    const filenameLabel = document.getElementById('editor-active-filename');
+    if (!editor || !AppState.currentRepo || !AppState.currentRepo.files) return;
 
-  var readmeContent = AppState.currentRepo.files['README.md'] || AppState.currentRepo.files['readme.md'];
-  if (!readmeContent) {
-    readmeCard.style.display = 'none';
-    return;
-  }
+    const content = AppState.currentRepo.files[filename] || '';
+    editor.value = content;
+    if (filenameLabel) filenameLabel.textContent = filename;
 
-  readmeCard.style.display = 'block';
+    updateLineNumbers();
+  };
 
-  var lines = readmeContent.split('\n');
-  var outHtml = '';
-  var inCodeBlock = false;
-  var codeAccumulator = '';
-  var inList = false;
+  const updateLineNumbers = () => {
+    const editor = document.getElementById('editor-code-input');
+    const lineContainer = document.getElementById('editor-line-numbers');
+    const metricsLabel = document.getElementById('editor-metrics-label');
+    if (!editor || !lineContainer) return;
 
-  for (var i = 0; i < lines.length; i++) {
-    var rawLine = lines[i];
+    const text = editor.value;
+    const linesCount = text.split('\n').length;
+    const bytesCount = (new Blob([text])).size;
 
-    if (rawLine.trim().indexOf('```') === 0) {
+    let linesHtml = '';
+    for (let i = 1; i <= linesCount; i++) {
+      linesHtml += i + '<br>';
+    }
+    lineContainer.innerHTML = linesHtml;
+
+    const formattedSize = (bytesCount < 1024) ? (bytesCount + ' B') : ((bytesCount / 1024).toFixed(1) + ' KB');
+    if (metricsLabel) {
+      metricsLabel.textContent = linesCount + ' lines · ' + formattedSize;
+    }
+  };
+
+  // Safe Markdown Parser for README.md
+  const renderReadmePreview = () => {
+    const readmeCard = document.getElementById('ws-readme-card');
+    const readmeRendered = document.getElementById('ws-readme-rendered');
+    if (!readmeCard || !readmeRendered || !AppState.currentRepo || !AppState.currentRepo.files) return;
+
+    const readmeContent = AppState.currentRepo.files['README.md'] || AppState.currentRepo.files['readme.md'];
+    if (!readmeContent) {
+      readmeCard.style.display = 'none';
+      return;
+    }
+
+    readmeCard.style.display = 'block';
+
+    const lines = readmeContent.split('\n');
+    let outHtml = '';
+    let inCodeBlock = false;
+    let codeAccumulator = '';
+    let inList = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const rawLine = lines.at(i);
+
+      if (rawLine.trim().indexOf('```') === 0) {
+        if (inCodeBlock) {
+          outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
+          codeAccumulator = '';
+          inCodeBlock = false;
+        } else {
+          if (inList) { outHtml += '</ul>'; inList = false; }
+          inCodeBlock = true;
+        }
+        continue;
+      }
+
       if (inCodeBlock) {
-        outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
-        codeAccumulator = '';
-        inCodeBlock = false;
+        codeAccumulator += rawLine + '\n';
+        continue;
+      }
+
+      const line = rawLine.trim();
+
+      if (line.indexOf('# ') === 0) {
+        if (inList) { outHtml += '</ul>'; inList = false; }
+        outHtml += '<h1>' + escapeHtml(line.slice(2)) + '</h1>';
+      } else if (line.indexOf('## ') === 0) {
+        if (inList) { outHtml += '</ul>'; inList = false; }
+        outHtml += '<h2>' + escapeHtml(line.slice(3)) + '</h2>';
+      } else if (line.indexOf('### ') === 0) {
+        if (inList) { outHtml += '</ul>'; inList = false; }
+        outHtml += '<h3>' + escapeHtml(line.slice(4)) + '</h3>';
+      } else if (line.indexOf('- ') === 0 || line.indexOf('* ') === 0) {
+        if (!inList) {
+          outHtml += '<ul>';
+          inList = true;
+        }
+        outHtml += '<li>' + escapeHtml(line.slice(2)) + '</li>';
+      } else if (line === '') {
+        if (inList) { outHtml += '</ul>'; inList = false; }
       } else {
         if (inList) { outHtml += '</ul>'; inList = false; }
-        inCodeBlock = true;
+        outHtml += '<p>' + escapeHtml(line) + '</p>';
       }
-      continue;
     }
 
     if (inCodeBlock) {
-      codeAccumulator += rawLine + '\n';
-      continue;
+      outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
+    }
+    if (inList) {
+      outHtml += '</ul>';
     }
 
-    var line = rawLine.trim();
+    readmeRendered.innerHTML = outHtml;
+  };
 
-    if (line.indexOf('# ') === 0) {
-      if (inList) { outHtml += '</ul>'; inList = false; }
-      outHtml += '<h1>' + escapeHtml(line.slice(2)) + '</h1>';
-    } else if (line.indexOf('## ') === 0) {
-      if (inList) { outHtml += '</ul>'; inList = false; }
-      outHtml += '<h2>' + escapeHtml(line.slice(3)) + '</h2>';
-    } else if (line.indexOf('### ') === 0) {
-      if (inList) { outHtml += '</ul>'; inList = false; }
-      outHtml += '<h3>' + escapeHtml(line.slice(4)) + '</h3>';
-    } else if (line.indexOf('- ') === 0 || line.indexOf('* ') === 0) {
-      if (!inList) {
-        outHtml += '<ul>';
-        inList = true;
+  // Render Commits Tab
+  const renderCommitsHistory = () => {
+    const listContainer = document.getElementById('ws-commits-history-list');
+    const badge = document.getElementById('tab-commits-count');
+    if (!listContainer || !AppState.currentRepo) return;
+
+    const commits = AppState.currentRepo.commits || [];
+    if (badge) badge.textContent = String(commits.length);
+
+    if (commits.length === 0) {
+      listContainer.innerHTML = '<div class="empty-box"><p>No commit history found.</p></div>';
+      return;
+    }
+
+    let html = '';
+    for (let i = 0; i < commits.length; i++) {
+      const c = commits.at(i);
+      const hash = escapeHtml((c.id || 'snap').slice(0, 7));
+      const msg = escapeHtml(c.message || 'Updated files');
+      const timeStr = formatRelativeTime(c.timestamp);
+      const snap = escapeHtml(c.snapshot_id || 'vault');
+
+      html += '<div class="commit-row">' +
+        '<div class="commit-info">' +
+          '<span class="commit-msg">' + msg + '</span>' +
+          '<span class="commit-meta">Committed ' + timeStr + ' · Snapshot: ' + snap + '</span>' +
+        '</div>' +
+        '<span class="commit-hash-pill">' + hash + '</span>' +
+      '</div>';
+    }
+    listContainer.innerHTML = html;
+  };
+
+  // 3. Worker v3.0 POST /commit ({ owner, name, description, message, files, idHash, gitKey })
+  const handlePushCommit = async (e) => {
+    e.preventDefault();
+    saveCurrentEditorBuffer();
+
+    if (!AppState.currentRepo) return;
+    if (!isRepoOwner()) {
+      showToast('Permission denied: You must be the repository owner to commit', 'error');
+      return;
+    }
+
+    const msgInput = document.getElementById('commit-msg-input');
+    const keyInput = document.getElementById('commit-key-input');
+    const submitBtn = document.getElementById('btn-submit-commit');
+
+    const msg = msgInput.value.trim();
+    const gitKey = keyInput.value.trim();
+
+    if (!msg) {
+      showToast('Commit message is required', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving Snapshot...';
+
+    const standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
+
+    const payload = {
+      owner: AppState.currentRepo.owner,
+      name: AppState.currentRepo.name,
+      description: AppState.currentRepo.description || '',
+      message: msg,
+      files: AppState.currentRepo.files,
+      idHash: AppState.idHash || undefined,
+      gitKey: gitKey || undefined
+    };
+
+    try {
+      const res = await fetch(API_BASE + '/commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Commit & Push Snapshot';
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Server rejected commit verification');
       }
-      outHtml += '<li>' + escapeHtml(line.slice(2)) + '</li>';
-    } else if (line === '') {
-      if (inList) { outHtml += '</ul>'; inList = false; }
-    } else {
-      if (inList) { outHtml += '</ul>'; inList = false; }
-      outHtml += '<p>' + escapeHtml(line) + '</p>';
+
+      if (gitKey) storeKey(standardRepoId, gitKey);
+
+      const newCommit = {
+        id: (data && data.commitId) ? data.commitId : ('c_' + Date.now().toString(16)),
+        message: msg,
+        timestamp: new Date().toISOString(),
+        snapshot_id: (data && data.snapshot_id) ? data.snapshot_id : ('vault_' + Date.now().toString(36))
+      };
+
+      if (!AppState.currentRepo.commits) {
+        AppState.currentRepo.commits = [];
+      }
+      AppState.currentRepo.commits.unshift(newCommit);
+      AppState.currentRepo.commits_count = AppState.currentRepo.commits.length;
+      AppState.currentRepo.updated_at = new Date().toISOString();
+
+      msgInput.value = '';
+      renderCommitsHistory();
+      renderReadmePreview();
+      updateNetworkStats();
+      showToast('Snapshot committed and secured to Telegram Vault!', 'success');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Commit & Push Snapshot';
+      showToast('Commit failed: ' + err.message, 'error');
     }
-  }
-
-  if (inCodeBlock) {
-    outHtml += '<pre><code>' + escapeHtml(codeAccumulator) + '</code></pre>';
-  }
-  if (inList) {
-    outHtml += '</ul>';
-  }
-
-  readmeRendered.innerHTML = outHtml;
-}
-
-// Render Commits Tab Log
-function renderCommitsHistory() {
-  var listContainer = document.getElementById('ws-commits-history-list');
-  var badge = document.getElementById('tab-commits-count');
-  if (!listContainer || !AppState.currentRepo) return;
-
-  var commits = AppState.currentRepo.commits || [];
-  if (badge) badge.textContent = String(commits.length);
-
-  if (commits.length === 0) {
-    listContainer.innerHTML = '<div class="empty-box"><p>No commit history found.</p></div>';
-    return;
-  }
-
-  var html = '';
-  for (var i = 0; i < commits.length; i++) {
-    var c = commits[i];
-    var hash = escapeHtml((c.id || 'snap').slice(0, 7));
-    var msg = escapeHtml(c.message || 'Updated files');
-    var timeStr = formatRelativeTime(c.timestamp);
-    var snap = escapeHtml(c.snapshot_id || 'vault');
-
-    html += '<div class="commit-row">' +
-      '<div class="commit-info">' +
-        '<span class="commit-msg">' + msg + '</span>' +
-        '<span class="commit-meta">Committed ' + timeStr + ' · Snapshot: ' + snap + '</span>' +
-      '</div>' +
-      '<span class="commit-hash-pill">' + hash + '</span>' +
-    '</div>';
-  }
-  listContainer.innerHTML = html;
-}
-
-// Push Commit Handler
-function handlePushCommit(e) {
-  e.preventDefault();
-  saveCurrentEditorBuffer();
-
-  if (!AppState.currentRepo) return;
-
-  var msgInput = document.getElementById('commit-msg-input');
-  var keyInput = document.getElementById('commit-key-input');
-  var submitBtn = document.getElementById('btn-submit-commit');
-
-  var msg = msgInput.value.trim();
-  var gitKey = keyInput.value.trim();
-
-  if (!msg || !gitKey) {
-    showToast('Commit message and TORCH-GIT-KEY are required', 'error');
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Saving Snapshot...';
-
-  var standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
-
-  var payload = {
-    owner: AppState.currentRepo.owner,
-    name: AppState.currentRepo.name,
-    description: AppState.currentRepo.description || '',
-    message: msg,
-    files: AppState.currentRepo.files,
-    gitKey: gitKey
   };
 
-  fetch(API_BASE + '/commit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(res) {
-    return res.json().then(function(json) {
-      return { ok: res.ok, status: res.status, data: json };
-    }).catch(function() {
-      return { ok: res.ok, status: res.status, data: {} };
-    });
-  })
-  .then(function(result) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Commit & Push Snapshot';
-
-    if (!result.ok && result.status !== 200 && result.status !== 201) {
-      throw new Error(result.data.error || 'Server rejected commit verification');
+  // 4. Worker v3.0 POST /publish ({ repoId, domain, idHash, gitKey })
+  const handlePublishPages = async (e) => {
+    e.preventDefault();
+    if (!AppState.currentRepo) return;
+    if (!isRepoOwner()) {
+      showToast('Permission denied: You must be the repository owner to publish', 'error');
+      return;
     }
 
-    storeKey(standardRepoId, gitKey);
+    const domainInput = document.getElementById('pages-domain-input');
+    const keyInput = document.getElementById('pages-key-input');
+    const submitBtn = document.getElementById('btn-submit-publish');
 
-    var newCommit = {
-      id: (result.data && result.data.commitId) ? result.data.commitId : ('c_' + Date.now().toString(16)),
-      message: msg,
-      timestamp: new Date().toISOString(),
-      snapshot_id: (result.data && result.data.snapshot_id) ? result.data.snapshot_id : ('vault_' + Date.now().toString(36))
-    };
+    const domainRaw = domainInput.value.trim().toLowerCase().replace(/\.torch$/, '');
+    const gitKey = keyInput.value.trim();
 
-    if (!AppState.currentRepo.commits) {
-      AppState.currentRepo.commits = [];
+    if (!domainRaw) {
+      showToast('Desired .torch domain name is required', 'error');
+      return;
     }
-    AppState.currentRepo.commits.unshift(newCommit);
-    AppState.currentRepo.commits_count = AppState.currentRepo.commits.length;
-    AppState.currentRepo.updated_at = new Date().toISOString();
 
-    msgInput.value = '';
-    renderCommitsHistory();
-    renderReadmePreview();
-    updateNetworkStats();
-    showToast('Snapshot committed and secured to Telegram Vault!', 'success');
-  })
-  .catch(function(err) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Commit & Push Snapshot';
+    const fullDomain = domainRaw + '.torch';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Publishing to .torch...';
 
-    storeKey(standardRepoId, gitKey);
+    const standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
 
-    var fallbackCommit = {
-      id: 'snap_' + Math.random().toString(16).slice(2, 9),
-      message: msg,
-      timestamp: new Date().toISOString(),
-      snapshot_id: 'vault_local_' + Date.now().toString(36)
+    const payload = {
+      repoId: standardRepoId,
+      domain: fullDomain,
+      idHash: AppState.idHash || undefined,
+      gitKey: gitKey || undefined
     };
-    if (!AppState.currentRepo.commits) AppState.currentRepo.commits = [];
-    AppState.currentRepo.commits.unshift(fallbackCommit);
-    AppState.currentRepo.commits_count = AppState.currentRepo.commits.length;
-    AppState.currentRepo.updated_at = new Date().toISOString();
 
-    msgInput.value = '';
-    renderCommitsHistory();
-    renderReadmePreview();
-    updateNetworkStats();
-    showToast('Commit recorded & buffered locally (' + err.message + ')', 'success');
-  });
-}
+    try {
+      const res = await fetch(API_BASE + '/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
 
-// Publish to TORCH Pages Handler
-function handlePublishPages(e) {
-  e.preventDefault();
-  if (!AppState.currentRepo) return;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Publish to .torch Network';
 
-  var domainInput = document.getElementById('pages-domain-input');
-  var keyInput = document.getElementById('pages-key-input');
-  var submitBtn = document.getElementById('btn-submit-publish');
+      if (!res.ok) {
+        throw new Error(data.error || 'Publish failed');
+      }
 
-  var domainRaw = domainInput.value.trim().toLowerCase().replace(/\.torch$/, '');
-  var gitKey = keyInput.value.trim();
+      AppState.currentRepo.published_domain = fullDomain;
+      if (gitKey) storeKey(standardRepoId, gitKey);
 
-  if (!domainRaw || !gitKey) {
-    showToast('Domain name and TORCH-GIT-KEY are required', 'error');
-    return;
-  }
+      document.getElementById('ws-published-badge').style.display = 'inline-flex';
+      document.getElementById('ws-published-domain').textContent = fullDomain;
+      document.getElementById('pages-live-box').style.display = 'flex';
+      document.getElementById('pages-live-domain-text').textContent = fullDomain;
+      document.getElementById('tab-pages-indicator').style.display = 'inline-flex';
 
-  var fullDomain = domainRaw + '.torch';
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Publishing to .torch...';
-
-  var standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
-
-  var payload = {
-    repoId: standardRepoId,
-    domain: fullDomain,
-    gitKey: gitKey
+      updateNetworkStats();
+      showToast('Published successfully! Resolving at ' + fullDomain, 'success');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Publish to .torch Network';
+      showToast('Publish error: ' + err.message, 'error');
+    }
   };
 
-  fetch(API_BASE + '/publish', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(res) {
-    return res.json().then(function(json) {
-      return { ok: res.ok, status: res.status, data: json };
-    }).catch(function() {
-      return { ok: res.ok, status: res.status, data: {} };
-    });
-  })
-  .then(function(result) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Publish to .torch Network';
+  // 5. Worker v3.0 POST /unpublish ({ repoId, idHash, gitKey })
+  const handleUnpublishPages = async () => {
+    if (!AppState.currentRepo) return;
+    if (!isRepoOwner()) {
+      showToast('Permission denied: Owner access required', 'error');
+      return;
+    }
 
-    AppState.currentRepo.published_domain = fullDomain;
-    storeKey(standardRepoId, gitKey);
+    if (!AppState.currentRepo.published_domain) {
+      showToast('No active .torch domain is currently published for this repo', 'error');
+      return;
+    }
 
-    document.getElementById('ws-published-badge').style.display = 'inline-flex';
-    document.getElementById('ws-published-domain').textContent = fullDomain;
-    document.getElementById('pages-live-box').style.display = 'flex';
-    document.getElementById('pages-live-domain-text').textContent = fullDomain;
-    document.getElementById('tab-pages-indicator').style.display = 'inline-flex';
+    const confirmed = window.confirm('Are you sure you want to unpublish ' + AppState.currentRepo.published_domain + '?');
+    if (!confirmed) return;
 
-    updateNetworkStats();
-    showToast('Published successfully! Resolving at ' + fullDomain, 'success');
-  })
-  .catch(function(err) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Publish to .torch Network';
+    const standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
+    const gitKey = getKeyForRepo(standardRepoId);
 
-    AppState.currentRepo.published_domain = fullDomain;
-    storeKey(standardRepoId, gitKey);
+    const payload = {
+      repoId: standardRepoId,
+      idHash: AppState.idHash || undefined,
+      gitKey: gitKey || undefined
+    };
 
-    document.getElementById('ws-published-badge').style.display = 'inline-flex';
-    document.getElementById('ws-published-domain').textContent = fullDomain;
-    document.getElementById('pages-live-box').style.display = 'flex';
-    document.getElementById('pages-live-domain-text').textContent = fullDomain;
-    document.getElementById('tab-pages-indicator').style.display = 'inline-flex';
+    showToast('Unpublishing domain...', 'success');
 
-    updateNetworkStats();
-    showToast('Domain ' + fullDomain + ' active in session!', 'success');
-  });
-}
+    try {
+      const res = await fetch(API_BASE + '/unpublish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
 
-// Download Repo Bundle as JSON Archive
-function downloadRepoBundle() {
-  saveCurrentEditorBuffer();
-  if (!AppState.currentRepo) return;
+      if (!res.ok) {
+        throw new Error(data.error || 'Unpublish failed');
+      }
 
-  var bundle = {
-    signature: 'TORCH_FORGE_ARCHIVE_V1',
-    exported_at: new Date().toISOString(),
-    owner: AppState.currentRepo.owner,
-    name: AppState.currentRepo.name,
-    description: AppState.currentRepo.description || '',
-    published_domain: AppState.currentRepo.published_domain || null,
-    files: AppState.currentRepo.files || {},
-    commits: AppState.currentRepo.commits || []
+      AppState.currentRepo.published_domain = null;
+      document.getElementById('ws-published-badge').style.display = 'none';
+      document.getElementById('pages-live-box').style.display = 'none';
+      document.getElementById('tab-pages-indicator').style.display = 'none';
+
+      updateNetworkStats();
+      showToast('Domain unpublished successfully', 'success');
+    } catch (err) {
+      showToast('Unpublish error: ' + err.message, 'error');
+    }
   };
 
-  var jsonText = JSON.stringify(bundle, null, 2);
-  var blob = new Blob([jsonText], { type: 'application/json;charset=utf-8;' });
-  var url = URL.createObjectURL(blob);
-  var link = document.createElement('a');
-  link.href = url;
-  link.download = AppState.currentRepo.owner + '-' + AppState.currentRepo.name + '-bundle.json';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  // 6. Worker v3.0 POST /delete ({ repoId, idHash, gitKey })
+  const openDeleteRepoModal = () => {
+    if (!AppState.currentRepo) return;
+    if (!isRepoOwner()) {
+      showToast('Permission denied: Only the owner can delete this repository', 'error');
+      return;
+    }
 
-  setTimeout(function() {
-    URL.revokeObjectURL(url);
-  }, 1000);
+    const modal = document.getElementById('modal-delete-repo');
+    const label = document.getElementById('delete-modal-reponame');
+    const input = document.getElementById('delete-confirm-input');
+    const confirmBtn = document.getElementById('btn-delete-modal-confirm');
 
-  showToast('Repository JSON bundle exported successfully', 'success');
-}
-
-// Fork Current Repository into Create Form
-function forkCurrentRepo() {
-  saveCurrentEditorBuffer();
-  if (!AppState.currentRepo) return;
-
-  switchView('create');
-
-  document.getElementById('create-owner').value = 'rh-devlab';
-  document.getElementById('create-name').value = AppState.currentRepo.name + '-fork';
-  document.getElementById('create-desc').value = 'Fork of ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name + ': ' + (AppState.currentRepo.description || '');
-
-  var files = AppState.currentRepo.files || {};
-  var keys = Object.keys(files);
-  // Bracket index [0] to read first file
-  var firstFile = keys.length > 0 ? keys[0] : 'index.html';
-
-  document.getElementById('create-filename').value = firstFile;
-  document.getElementById('create-filecontent').value = files[firstFile] || '';
-  document.getElementById('create-commit-msg').value = 'Fork from ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name;
-
-  document.getElementById('create-success-panel').style.display = 'none';
-  document.getElementById('create-form-wrap').style.display = 'block';
-
-  showToast('Cloned repo files into Create New Repo form!', 'success');
-}
-
-// Create New Repository Form Handler
-function handleCreateRepo(e) {
-  e.preventDefault();
-
-  var ownerInput = document.getElementById('create-owner');
-  var nameInput = document.getElementById('create-name');
-  var descInput = document.getElementById('create-desc');
-  var filenameInput = document.getElementById('create-filename');
-  var filecontentInput = document.getElementById('create-filecontent');
-  var commitMsgInput = document.getElementById('create-commit-msg');
-  var submitBtn = document.getElementById('btn-submit-create');
-
-  var owner = ownerInput.value.trim();
-  var name = nameInput.value.trim();
-  var desc = descInput.value.trim();
-  var filename = filenameInput.value.trim() || 'index.html';
-  var filecontent = filecontentInput.value;
-  var commitMsg = commitMsgInput.value.trim() || 'Initial commit';
-
-  if (!owner || !name) {
-    showToast('Owner and Repository Name are required', 'error');
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Securing to Vault...';
-
-  var filesMap = {};
-  filesMap[filename] = filecontent;
-
-  // Initial creation: omit gitKey so Worker generates the canonical TORCH-GIT-... key
-  var payload = {
-    owner: owner,
-    name: name,
-    description: desc,
-    message: commitMsg,
-    files: filesMap
-  };
-
-  var standardRepoId = owner + '--' + name;
-
-  fetch(API_BASE + '/commit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(res) {
-    return res.json().then(function(json) {
-      return { ok: res.ok, status: res.status, data: json };
-    }).catch(function() {
-      return { ok: res.ok, status: res.status, data: {} };
-    });
-  })
-  .then(function(result) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Create Repository';
-
-    // Retrieve generated key from Worker or fallback
-    var finalKey = (result.data && result.data.gitKey) ? result.data.gitKey : ('TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase());
-
-    storeKey(standardRepoId, finalKey);
-
-    var newRepoObj = {
-      id: standardRepoId,
-      owner: owner,
-      name: name,
-      description: desc,
-      commits_count: 1,
-      updated_at: new Date().toISOString(),
-      files: filesMap,
-      commits: [
-        {
-          id: (result.data && result.data.commitId) ? result.data.commitId : ('c_' + Date.now().toString(16)),
-          message: commitMsg,
-          timestamp: new Date().toISOString(),
-          snapshot_id: (result.data && result.data.snapshot_id) ? result.data.snapshot_id : ('vault_init_' + Date.now().toString(36))
-        }
-      ]
-    };
-
-    AppState.repos.unshift(newRepoObj);
-    updateNetworkStats();
-
-    // Show Success Panel
-    document.getElementById('created-key-display').textContent = finalKey;
-    document.getElementById('create-success-panel').style.display = 'flex';
-    document.getElementById('create-form-wrap').style.display = 'none';
-
-    document.getElementById('btn-open-created-repo').onclick = function() {
-      openRepositoryWorkspace(standardRepoId);
-    };
-
-    showToast('Repository created and anchored to Telegram Vault!', 'success');
-  })
-  .catch(function(err) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Create Repository';
-
-    var generatedKey = 'TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase();
-    storeKey(standardRepoId, generatedKey);
-
-    var newRepoObj = {
-      id: standardRepoId,
-      owner: owner,
-      name: name,
-      description: desc,
-      commits_count: 1,
-      updated_at: new Date().toISOString(),
-      files: filesMap,
-      commits: [
-        {
-          id: 'c_' + Math.random().toString(16).slice(2, 9),
-          message: commitMsg,
-          timestamp: new Date().toISOString(),
-          snapshot_id: 'vault_local_init'
-        }
-      ]
-    };
-
-    AppState.repos.unshift(newRepoObj);
-    updateNetworkStats();
-
-    document.getElementById('created-key-display').textContent = generatedKey;
-    document.getElementById('create-success-panel').style.display = 'flex';
-    document.getElementById('create-form-wrap').style.display = 'none';
-
-    document.getElementById('btn-open-created-repo').onclick = function() {
-      openRepositoryWorkspace(standardRepoId);
-    };
-
-    showToast('Repository created locally with generated key!', 'success');
-  });
-}
-
-// Starter Template Code Loader
-function loadStarterTemplate() {
-  var htmlCode = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>TORCH DApp</title>\n  <style>\n    body { background: #09090b; color: #f4f4f5; font-family: system-ui; text-align: center; padding: 4rem 1rem; }\n    h1 { color: #f97316; font-size: 2.5rem; }\n  </style>\n</head>\n<body>\n  <h1>Sovereign Web on TORCH</h1>\n  <p>Decentralized code hosting connected to Telegram Vault.</p>\n</body>\n</html>';
-  document.getElementById('create-filename').value = 'index.html';
-  document.getElementById('create-filecontent').value = htmlCode;
-  showToast('Starter Web App template loaded!', 'success');
-}
-
-// Modal Handlers for Adding New File
-function openAddFileModal() {
-  var modal = document.getElementById('modal-add-file');
-  var input = document.getElementById('modal-filename-input');
-  if (modal) {
+    label.textContent = AppState.currentRepo.owner + '/' + AppState.currentRepo.name;
+    input.value = '';
+    confirmBtn.disabled = true;
     modal.classList.add('active');
-    if (input) {
-      input.value = '';
-      setTimeout(function() { input.focus(); }, 50);
-    }
-  }
-}
 
-function closeAddFileModal() {
-  var modal = document.getElementById('modal-add-file');
-  if (modal) modal.classList.remove('active');
-}
+    setTimeout(() => { input.focus(); }, 50);
+  };
 
-function confirmAddFile() {
-  var input = document.getElementById('modal-filename-input');
-  var fn = input.value.trim();
-  if (!fn) {
-    showToast('Please enter a valid file name', 'error');
-    return;
-  }
+  const closeDeleteRepoModal = () => {
+    const modal = document.getElementById('modal-delete-repo');
+    modal.classList.remove('active');
+  };
 
-  if (AppState.currentRepo.files[fn]) {
-    showToast('A file with this name already exists', 'error');
-    return;
-  }
+  const handleDeleteRepository = async () => {
+    if (!AppState.currentRepo) return;
+    const standardRepoId = AppState.currentRepo.owner + '--' + AppState.currentRepo.name;
+    const gitKey = getKeyForRepo(standardRepoId);
+    const confirmBtn = document.getElementById('btn-delete-modal-confirm');
 
-  saveCurrentEditorBuffer();
-  AppState.currentRepo.files[fn] = '// ' + fn + '\n';
-  AppState.activeFilename = fn;
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Deleting from Network...';
 
-  closeAddFileModal();
-  renderFileTabs();
-  loadFileIntoEditor(fn);
-  renderReadmePreview();
-  showToast('File created: ' + fn, 'success');
-}
+    const payload = {
+      repoId: standardRepoId,
+      idHash: AppState.idHash || undefined,
+      gitKey: gitKey || undefined
+    };
 
-// Delete Active File
-function handleDeleteActiveFile() {
-  if (!AppState.currentRepo || !AppState.currentRepo.files) return;
+    try {
+      const res = await fetch(API_BASE + '/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
 
-  var keys = Object.keys(AppState.currentRepo.files);
-  if (keys.length <= 1) {
-    showToast('Cannot delete the only remaining file in the repository', 'error');
-    return;
-  }
+      closeDeleteRepoModal();
 
-  var target = AppState.activeFilename;
-  var confirmed = window.confirm('Are you sure you want to delete "' + target + '"?');
-  if (!confirmed) return;
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to delete repository');
+      }
 
-  delete AppState.currentRepo.files[target];
+      // Remove from memory state
+      AppState.repos = AppState.repos.filter(r => ((r.owner || '') + '--' + (r.name || '')) !== standardRepoId);
+      AppState.currentRepo = null;
 
-  var remaining = Object.keys(AppState.currentRepo.files);
-  // Bracket index [0] to select first remaining file
-  AppState.activeFilename = remaining[0];
-
-  renderFileTabs();
-  loadFileIntoEditor(AppState.activeFilename);
-  renderReadmePreview();
-  showToast('Deleted file: ' + target, 'success');
-}
-
-// Copy Raw Editor Content to Clipboard
-function handleCopyRawCode() {
-  var editor = document.getElementById('editor-code-input');
-  if (!editor) return;
-  var val = editor.value;
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(val).then(function() {
-      showToast('Raw code copied to clipboard!', 'success');
-    }).catch(function() {
-      fallbackCopy(val);
-    });
-  } else {
-    fallbackCopy(val);
-  }
-}
-
-function fallbackCopy(text) {
-  var ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.position = 'fixed';
-  ta.style.opacity = '0';
-  document.body.appendChild(ta);
-  ta.select();
-  try {
-    document.execCommand('copy');
-    showToast('Copied to clipboard!', 'success');
-  } catch (err) {
-    showToast('Copy failed, please copy manually', 'error');
-  }
-  document.body.removeChild(ta);
-}
-
-// Bind Global DOM Event Listeners
-function initApp() {
-  loadStoredKeys();
-
-  // Brand Home Navigation
-  document.getElementById('nav-brand-btn').addEventListener('click', function() {
-    switchView('explore');
-  });
-
-  // Global & Mobile Search Inputs
-  var globalSearch = document.getElementById('global-search-input');
-  var mobileSearch = document.getElementById('mobile-search-input');
-
-  function onSearch(e) {
-    AppState.searchQuery = e.target.value;
-    if (globalSearch && e.target !== globalSearch) globalSearch.value = AppState.searchQuery;
-    if (mobileSearch && e.target !== mobileSearch) mobileSearch.value = AppState.searchQuery;
-    if (AppState.currentView !== 'explore') {
+      updateNetworkStats();
+      renderExploreRepos();
       switchView('explore');
+      showToast('Repository permanently deleted from TORCH network', 'success');
+    } catch (err) {
+      closeDeleteRepoModal();
+      showToast('Delete error: ' + err.message, 'error');
     }
-    renderExploreRepos();
-  }
+  };
 
-  if (globalSearch) globalSearch.addEventListener('input', onSearch);
-  if (mobileSearch) mobileSearch.addEventListener('input', onSearch);
+  // Download Repo Bundle as JSON Archive
+  const downloadRepoBundle = () => {
+    saveCurrentEditorBuffer();
+    if (!AppState.currentRepo) return;
 
-  // Refresh Feed
-  document.getElementById('btn-refresh-feed').addEventListener('click', function() {
-    fetchRepositories();
-  });
+    const bundle = {
+      signature: 'TORCH_FORGE_ARCHIVE_V3',
+      exported_at: new Date().toISOString(),
+      owner: AppState.currentRepo.owner,
+      name: AppState.currentRepo.name,
+      description: AppState.currentRepo.description || '',
+      published_domain: AppState.currentRepo.published_domain || null,
+      files: AppState.currentRepo.files || {},
+      commits: AppState.currentRepo.commits || []
+    };
 
-  // Nav New Repo Button
-  document.getElementById('btn-nav-new-repo').addEventListener('click', function() {
+    const jsonText = JSON.stringify(bundle, null, 2);
+    const blob = new Blob([jsonText], { type: 'application/json;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = AppState.currentRepo.owner + '-' + AppState.currentRepo.name + '-bundle.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 1000);
+
+    showToast('Repository JSON bundle exported successfully', 'success');
+  };
+
+  // Fork Current Repository into Create Form
+  const forkCurrentRepo = () => {
+    saveCurrentEditorBuffer();
+    if (!AppState.currentRepo) return;
+
+    const myUsername = (AppState.currentUser && AppState.currentUser.username) ? AppState.currentUser.username : 'rh-devlab';
+
+    switchView('create');
+
+    document.getElementById('create-owner').value = myUsername;
+    document.getElementById('create-name').value = AppState.currentRepo.name + '-fork';
+    document.getElementById('create-desc').value = 'Fork of ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name + ': ' + (AppState.currentRepo.description || '');
+
+    const files = AppState.currentRepo.files || {};
+    const keys = Object.keys(files);
+    // Modern .at(0)
+    const firstFile = keys.length > 0 ? (keys.at(0) || 'index.html') : 'index.html';
+
+    document.getElementById('create-filename').value = firstFile;
+    document.getElementById('create-filecontent').value = files[firstFile] || '';
+    document.getElementById('create-commit-msg').value = 'Fork from ' + AppState.currentRepo.owner + '/' + AppState.currentRepo.name;
+
     document.getElementById('create-success-panel').style.display = 'none';
     document.getElementById('create-form-wrap').style.display = 'block';
-    document.getElementById('form-create-repo').reset();
-    document.getElementById('create-owner').value = 'rh-devlab';
+
+    showToast('Cloned repo files into Create New Repo form!', 'success');
+  };
+
+  // Create New Repository Form Handler
+  const handleCreateRepo = async (e) => {
+    e.preventDefault();
+
+    const ownerInput = document.getElementById('create-owner');
+    const nameInput = document.getElementById('create-name');
+    const descInput = document.getElementById('create-desc');
+    const filenameInput = document.getElementById('create-filename');
+    const filecontentInput = document.getElementById('create-filecontent');
+    const commitMsgInput = document.getElementById('create-commit-msg');
+    const submitBtn = document.getElementById('btn-submit-create');
+
+    const owner = ownerInput.value.trim();
+    const name = nameInput.value.trim();
+    const desc = descInput.value.trim();
+    const filename = filenameInput.value.trim() || 'index.html';
+    const filecontent = filecontentInput.value;
+    const commitMsg = commitMsgInput.value.trim() || 'Initial commit';
+
+    if (!owner || !name) {
+      showToast('Owner and Repository Name are required', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Securing to Vault...';
+
+    const filesMap = {};
+    filesMap[filename] = filecontent;
+
+    const payload = {
+      owner: owner,
+      name: name,
+      description: desc,
+      message: commitMsg,
+      files: filesMap,
+      idHash: AppState.idHash || undefined
+    };
+
+    const standardRepoId = owner + '--' + name;
+
+    try {
+      const res = await fetch(API_BASE + '/commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const resultData = await res.json().catch(() => ({}));
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Create Repository';
+
+      const finalKey = (resultData && resultData.gitKey) ? resultData.gitKey : ('TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase());
+
+      storeKey(standardRepoId, finalKey);
+
+      const newRepoObj = {
+        id: standardRepoId,
+        owner: owner,
+        name: name,
+        description: desc,
+        commits_count: 1,
+        updated_at: new Date().toISOString(),
+        files: filesMap,
+        commits: [
+          {
+            id: (resultData && resultData.commitId) ? resultData.commitId : ('c_' + Date.now().toString(16)),
+            message: commitMsg,
+            timestamp: new Date().toISOString(),
+            snapshot_id: (resultData && resultData.snapshot_id) ? resultData.snapshot_id : ('vault_init_' + Date.now().toString(36))
+          }
+        ]
+      };
+
+      AppState.repos.unshift(newRepoObj);
+      updateNetworkStats();
+
+      document.getElementById('created-key-display').textContent = finalKey;
+      document.getElementById('create-success-panel').style.display = 'flex';
+      document.getElementById('create-form-wrap').style.display = 'none';
+
+      document.getElementById('btn-open-created-repo').onclick = () => {
+        openRepositoryWorkspace(standardRepoId);
+      };
+
+      showToast('Repository created and anchored to Telegram Vault!', 'success');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Create Repository';
+
+      const generatedKey = 'TORCH-GIT-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+      storeKey(standardRepoId, generatedKey);
+
+      const newRepoObj = {
+        id: standardRepoId,
+        owner: owner,
+        name: name,
+        description: desc,
+        commits_count: 1,
+        updated_at: new Date().toISOString(),
+        files: filesMap,
+        commits: [
+          {
+            id: 'c_' + Math.random().toString(16).slice(2, 9),
+            message: commitMsg,
+            timestamp: new Date().toISOString(),
+            snapshot_id: 'vault_local_init'
+          }
+        ]
+      };
+
+      AppState.repos.unshift(newRepoObj);
+      updateNetworkStats();
+
+      document.getElementById('created-key-display').textContent = generatedKey;
+      document.getElementById('create-success-panel').style.display = 'flex';
+      document.getElementById('create-form-wrap').style.display = 'none';
+
+      document.getElementById('btn-open-created-repo').onclick = () => {
+        openRepositoryWorkspace(standardRepoId);
+      };
+
+      showToast('Repository created locally with generated key!', 'success');
+    }
+  };
+
+  // Starter Web Template
+  const loadStarterTemplate = () => {
+    const htmlCode = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>TORCH DApp</title>\n  <style>\n    body { background: #09090b; color: #f4f4f5; font-family: system-ui; text-align: center; padding: 4rem 1rem; }\n    h1 { color: #f97316; font-size: 2.5rem; }\n  </style>\n</head>\n<body>\n  <h1>Sovereign Web on TORCH</h1>\n  <p>Decentralized code hosting connected to Telegram Vault.</p>\n</body>\n</html>';
     document.getElementById('create-filename').value = 'index.html';
-    document.getElementById('create-commit-msg').value = 'Initial commit';
-    switchView('create');
-  });
+    document.getElementById('create-filecontent').value = htmlCode;
+    showToast('Starter Web App template loaded!', 'success');
+  };
 
-  // Workspace Navigation & Actions
-  document.getElementById('btn-ws-back').addEventListener('click', function() {
-    switchView('explore');
-  });
+  // Modal Handlers for Adding New File
+  const openAddFileModal = () => {
+    const modal = document.getElementById('modal-add-file');
+    const input = document.getElementById('modal-filename-input');
+    if (modal) {
+      modal.classList.add('active');
+      if (input) {
+        input.value = '';
+        setTimeout(() => { input.focus(); }, 50);
+      }
+    }
+  };
 
-  document.getElementById('btn-ws-download').addEventListener('click', downloadRepoBundle);
-  document.getElementById('btn-ws-fork').addEventListener('click', forkCurrentRepo);
+  const closeAddFileModal = () => {
+    const modal = document.getElementById('modal-add-file');
+    if (modal) modal.classList.remove('active');
+  };
 
-  // Sub Tab Buttons
-  document.getElementById('tab-btn-code').addEventListener('click', function() { activateSubTab('code'); });
-  document.getElementById('tab-btn-commits').addEventListener('click', function() { activateSubTab('commits'); });
-  document.getElementById('tab-btn-pages').addEventListener('click', function() { activateSubTab('pages'); });
+  const confirmAddFile = () => {
+    const input = document.getElementById('modal-filename-input');
+    const fn = input.value.trim();
+    if (!fn) {
+      showToast('Please enter a valid file name', 'error');
+      return;
+    }
 
-  // Code Editor Textarea Typing Listener
-  var editor = document.getElementById('editor-code-input');
-  editor.addEventListener('input', function() {
-    updateLineNumbers();
+    if (AppState.currentRepo.files[fn]) {
+      showToast('A file with this name already exists', 'error');
+      return;
+    }
+
     saveCurrentEditorBuffer();
-    if (AppState.activeFilename.toLowerCase() === 'readme.md') {
-      renderReadmePreview();
+    AppState.currentRepo.files[fn] = '// ' + fn + '\n';
+    AppState.activeFilename = fn;
+
+    closeAddFileModal();
+    renderFileTabs();
+    loadFileIntoEditor(fn);
+    renderReadmePreview();
+    showToast('File created: ' + fn, 'success');
+  };
+
+  const handleDeleteActiveFile = () => {
+    if (!AppState.currentRepo || !AppState.currentRepo.files) return;
+
+    const keys = Object.keys(AppState.currentRepo.files);
+    if (keys.length <= 1) {
+      showToast('Cannot delete the only remaining file in the repository', 'error');
+      return;
     }
-  });
 
-  // Synchronize Scroll between Line Numbers and Editor
-  editor.addEventListener('scroll', function() {
-    var lineCol = document.getElementById('editor-line-numbers');
-    if (lineCol) {
-      lineCol.scrollTop = editor.scrollTop;
+    const target = AppState.activeFilename;
+    const confirmed = window.confirm('Are you sure you want to delete "' + target + '"?');
+    if (!confirmed) return;
+
+    delete AppState.currentRepo.files[target];
+
+    const remaining = Object.keys(AppState.currentRepo.files);
+    // Modern .at(0)
+    AppState.activeFilename = remaining.at(0) || 'index.html';
+
+    renderFileTabs();
+    loadFileIntoEditor(AppState.activeFilename);
+    renderReadmePreview();
+    showToast('Deleted file: ' + target, 'success');
+  };
+
+  // Copy Raw Code
+  const handleCopyRawCode = async () => {
+    const editor = document.getElementById('editor-code-input');
+    if (!editor) return;
+    const val = editor.value;
+
+    try {
+      await navigator.clipboard.writeText(val);
+      showToast('Raw code copied to clipboard!', 'success');
+    } catch {
+      fallbackCopy(val);
     }
-  });
+  };
 
-  // File Actions
-  document.getElementById('btn-add-file').addEventListener('click', openAddFileModal);
-  document.getElementById('btn-del-file').addEventListener('click', handleDeleteActiveFile);
-  document.getElementById('btn-copy-raw').addEventListener('click', handleCopyRawCode);
+  const fallbackCopy = (text) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Copied to clipboard!', 'success');
+    } catch {
+      showToast('Copy failed, please copy manually', 'error');
+    }
+    document.body.removeChild(ta);
+  };
 
-  // Commit and Publish Form Submissions
-  document.getElementById('form-push-commit').addEventListener('submit', handlePushCommit);
-  document.getElementById('form-publish-pages').addEventListener('submit', handlePublishPages);
+  // Manual Login Modal Handlers
+  const openLoginModal = () => {
+    const modal = document.getElementById('modal-torch-login');
+    const input = document.getElementById('login-seed-input');
+    modal.classList.add('active');
+    setTimeout(() => { input.focus(); }, 50);
+  };
 
-  // Create Repo View Actions
-  document.getElementById('form-create-repo').addEventListener('submit', handleCreateRepo);
-  document.getElementById('btn-cancel-create').addEventListener('click', function() { switchView('explore'); });
-  document.getElementById('btn-load-starter-template').addEventListener('click', loadStarterTemplate);
+  const closeLoginModal = () => {
+    document.getElementById('modal-torch-login').classList.remove('active');
+  };
 
-  document.getElementById('btn-copy-created-key').addEventListener('click', function() {
-    var key = document.getElementById('created-key-display').textContent;
-    fallbackCopy(key);
-  });
+  const handleLoginSubmit = async () => {
+    const input = document.getElementById('login-seed-input');
+    const rawSeed = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+    const words = rawSeed.split(' ').filter(Boolean);
+    if (words.length !== 8) {
+      showToast('Seed phrase must contain exactly 8 words (received ' + words.length + ')', 'error');
+      return;
+    }
 
-  // Modal Actions
-  document.getElementById('btn-modal-cancel').addEventListener('click', closeAddFileModal);
-  document.getElementById('btn-modal-confirm').addEventListener('click', confirmAddFile);
-  document.getElementById('modal-add-file').addEventListener('click', function(e) {
-    if (e.target === this) closeAddFileModal();
-  });
+    showToast('Deriving sovereign cryptographic identity...', 'success');
+    const derivedHash = await getDerivedIdHash(rawSeed);
 
-  // Initial Data Fetch
-  fetchRepositories();
-}
+    // Prompt or generate profile name from seed
+    const username = words.at(0) + '-' + words.at(1);
+    const profile = {
+      username: username,
+      displayName: 'Citizen ' + words.at(0),
+      avatar: ''
+    };
 
-// Start Application on DOM Ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
+    await setAuthenticatedUser(profile, rawSeed);
+    closeLoginModal();
+    showToast('Logged in as @' + username + ' (idHash derived)', 'success');
+  };
+
+  // DOM Event Bindings
+  const initApp = async () => {
+    loadStoredKeys();
+    await initAuthSession();
+
+    // Brand Home Navigation
+    document.getElementById('nav-brand-btn').addEventListener('click', () => {
+      switchView('explore');
+    });
+
+    // Search Inputs
+    const globalSearch = document.getElementById('global-search-input');
+    const mobileSearch = document.getElementById('mobile-search-input');
+
+    const onSearch = (e) => {
+      AppState.searchQuery = e.target.value;
+      if (globalSearch && e.target !== globalSearch) globalSearch.value = AppState.searchQuery;
+      if (mobileSearch && e.target !== mobileSearch) mobileSearch.value = AppState.searchQuery;
+      if (AppState.currentView !== 'explore') {
+        switchView('explore');
+      }
+      renderExploreRepos();
+    };
+
+    if (globalSearch) globalSearch.addEventListener('input', onSearch);
+    if (mobileSearch) mobileSearch.addEventListener('input', onSearch);
+
+    // Refresh Feed
+    document.getElementById('btn-refresh-feed').addEventListener('click', () => {
+      fetchRepositories();
+    });
+
+    // Login Button
+    document.getElementById('btn-user-identity').addEventListener('click', () => {
+      if (AppState.currentUser) {
+        showToast('Logged in as @' + AppState.currentUser.username, 'success');
+      } else {
+        openLoginModal();
+      }
+    });
+
+    // Nav New Repo Button
+    document.getElementById('btn-nav-new-repo').addEventListener('click', () => {
+      document.getElementById('create-success-panel').style.display = 'none';
+      document.getElementById('create-form-wrap').style.display = 'block';
+      document.getElementById('form-create-repo').reset();
+      const myUsername = (AppState.currentUser && AppState.currentUser.username) ? AppState.currentUser.username : 'rh-devlab';
+      document.getElementById('create-owner').value = myUsername;
+      document.getElementById('create-filename').value = 'index.html';
+      document.getElementById('create-commit-msg').value = 'Initial commit';
+      switchView('create');
+    });
+
+    // Workspace Navigation & Actions
+    document.getElementById('btn-ws-back').addEventListener('click', () => {
+      switchView('explore');
+    });
+
+    document.getElementById('btn-ws-download').addEventListener('click', downloadRepoBundle);
+    document.getElementById('btn-ws-fork').addEventListener('click', forkCurrentRepo);
+    document.getElementById('btn-readonly-fork').addEventListener('click', forkCurrentRepo);
+
+    // GitHub 4 Sub Tabs
+    document.getElementById('tab-btn-code').addEventListener('click', () => { activateSubTab('code'); });
+    document.getElementById('tab-btn-commits').addEventListener('click', () => { activateSubTab('commits'); });
+    document.getElementById('tab-btn-pages').addEventListener('click', () => { activateSubTab('pages'); });
+    document.getElementById('tab-btn-settings').addEventListener('click', () => { activateSubTab('settings'); });
+
+    // Code Editor Listeners
+    const editor = document.getElementById('editor-code-input');
+    editor.addEventListener('input', () => {
+      updateLineNumbers();
+      saveCurrentEditorBuffer();
+      if (AppState.activeFilename.toLowerCase() === 'readme.md') {
+        renderReadmePreview();
+      }
+    });
+
+    editor.addEventListener('scroll', () => {
+      const lineCol = document.getElementById('editor-line-numbers');
+      if (lineCol) {
+        lineCol.scrollTop = editor.scrollTop;
+      }
+    });
+
+    // File Actions
+    document.getElementById('btn-add-file').addEventListener('click', openAddFileModal);
+    document.getElementById('btn-del-file').addEventListener('click', handleDeleteActiveFile);
+    document.getElementById('btn-copy-raw').addEventListener('click', handleCopyRawCode);
+
+    // Forms
+    document.getElementById('form-push-commit').addEventListener('submit', handlePushCommit);
+    document.getElementById('form-publish-pages').addEventListener('submit', handlePublishPages);
+    document.getElementById('form-create-repo').addEventListener('submit', handleCreateRepo);
+
+    // Pages Direct Actions
+    document.getElementById('btn-unpublish-pages-direct').addEventListener('click', handleUnpublishPages);
+        document.getElementById('btn-open-torch-site').addEventListener('click', () => {
+      if (AppState.currentRepo && AppState.currentRepo.published_domain) {
+        const dom = AppState.currentRepo.published_domain;
+        fallbackCopy(dom);
+        showToast('Copied ' + dom + ' — paste in TORCH Browser address bar!', 'success');
+      }
+    });
+    // Settings (Danger Zone) Actions
+    document.getElementById('btn-copy-settings-key').addEventListener('click', () => {
+      const key = document.getElementById('settings-gitkey-display').textContent;
+      fallbackCopy(key);
+    });
+    document.getElementById('btn-danger-unpublish').addEventListener('click', handleUnpublishPages);
+    document.getElementById('btn-danger-delete-repo').addEventListener('click', openDeleteRepoModal);
+
+    // Delete Modal Actions
+    const deleteConfirmInput = document.getElementById('delete-confirm-input');
+    const deleteConfirmBtn = document.getElementById('btn-delete-modal-confirm');
+    deleteConfirmInput.addEventListener('input', (e) => {
+      if (!AppState.currentRepo) return;
+      deleteConfirmBtn.disabled = (e.target.value.trim() !== AppState.currentRepo.name);
+    });
+    deleteConfirmBtn.addEventListener('click', handleDeleteRepository);
+    document.getElementById('btn-delete-modal-cancel').addEventListener('click', closeDeleteRepoModal);
+
+    // Create Repo Actions
+    document.getElementById('btn-cancel-create').addEventListener('click', () => { switchView('explore'); });
+    document.getElementById('btn-load-starter-template').addEventListener('click', loadStarterTemplate);
+    document.getElementById('btn-copy-created-key').addEventListener('click', () => {
+      const key = document.getElementById('created-key-display').textContent;
+      fallbackCopy(key);
+    });
+
+    // Modal Actions
+    document.getElementById('btn-modal-cancel').addEventListener('click', closeAddFileModal);
+    document.getElementById('btn-modal-confirm').addEventListener('click', confirmAddFile);
+    document.getElementById('modal-add-file').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeAddFileModal();
+    });
+    document.getElementById('modal-delete-repo').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeDeleteRepoModal();
+    });
+
+    // Login Modal Actions
+    document.getElementById('btn-login-modal-cancel').addEventListener('click', closeLoginModal);
+    document.getElementById('btn-login-modal-submit').addEventListener('click', handleLoginSubmit);
+    document.getElementById('modal-torch-login').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeLoginModal();
+    });
+
+    // Initial Data Fetch
+    await fetchRepositories();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
+})();
 </script>
 </body>
 </html>
