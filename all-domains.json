@@ -1,0 +1,11 @@
+{
+  "network": "TORCH",
+  "tld": ".torch",
+  "updated_at": "2026-11-26T18:05:21Z",
+  "records": {
+    "git.torch": "https://rh-devlab.github.io/torch-dns/forge.html",
+    "home.torch": "https://example.com",
+    "host.torch": "https://rh-devlab.github.io/torch-dns/portal.html",
+    "torch.torch": "https://torch-cloud-api.rh22042010.workers.dev/site/torch"
+  }
+}

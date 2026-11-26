@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TORCH Host | Sovereign Web &amp; Domain Studio</title>
+  <style>
+    /* ==========================================================================
+       Design System & Tokens (Deep Slate #09090b & Fiery Amber #f97316)
+       ========================================================================== */
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+      /* Dark Theme Palettes */
+      --bg-base: #09090b;
+      --bg-surface: #121217;
+      --bg-surface-elevated: #18181f;
+      --bg-surface-hover: #22222b;
+      --border-subtle: #272730;
+      --border-strong: #3f3f4e;
+            --text-main: #f4f4f6;
+      --text-muted: #9494a3;
+      --text-dim: #646473;
+
+      /* Primary Fiery Amber / Orange */
+      --accent-primary: #f97316;
+      --accent-hover: #ea580c;
+      --accent-subtle: rgba(249, 115, 22, 0.12);
+      --accent-glow: rgba(249, 115, 22, 0.35);
+
+      /* Semantic Status Colors */
+      --emerald-accent: #10b981;
+      --emerald-subtle: rgba(16, 185, 129, 0.15);
+      --rose-accent: #f43f5e;
+      --rose-subtle: rgba(244, 63, 94, 0.15);
+      --amber-accent: #f59e0b;
+      --amber-subtle: rgba(245, 158, 11, 0.15);
+
+      /* Shadows & Transitions */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 30px -4px rgba(0, 0, 0, 0.7);
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================================
+       Global Reset & Foundation
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.08) 0%, transparent 65%),
+        linear-gradient(to bottom, #09090b, #0c0c10);
+      background-attachment: fixed;
+    }
+
+    button, input, textarea {
+      font-family: inherit;
+      color: inherit;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* SVG Icon System */
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .icon-sm { width: 14px; height: 14px; }
+    .icon-lg { width: 24px; height: 24px; }
+
+    /* ==========================================================================
+       Header & Branding
+       ========================================================================== */
+    .studio-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-emblem {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(234, 88, 12, 0.08));
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px -2px var(--accent-glow);
+    }
+    .brand-emblem svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-primary);
+      fill: url(#flameGrad);
+    }
+
+    .brand-text h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      letter-spacing: 0.04em;
+    }
+    .brand-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge-api-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 500;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      color: var(--text-muted);
+      user-select: none;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald-accent);
+      box-shadow: 0 0 6px var(--emerald-accent);
+    }
+
+    /* ==========================================================================
+       Main Workspace Layout
+       ========================================================================== */
+    .studio-container {
+      max-width: 960px;
+      width: 100%;
+      margin: 32px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Hero Banner */
+    .studio-hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .studio-hero h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+    .studio-hero p {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Navigation Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-surface);
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-surface-elevated);
+    }
+    .tab-btn.active {
+      color: #ffffff;
+      background: var(--accent-primary);
+      box-shadow: 0 2px 10px rgba(249, 115, 22, 0.35);
+    }
+
+    /* Form Container */
+    .form-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
+    }
+    .form-panel {
+      display: none;
+    }
+    .form-panel.active {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Form Controls */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .input-hint {
+      font-size: 11.5px;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    /* Custom Input with Suffix */
+    .domain-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0 12px;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .domain-input-wrap:focus-within {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .domain-input {
+      flex: 1;
+      height: 42px;
+      font-size: 14px;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+    .domain-input::placeholder {
+      color: var(--text-dim);
+    }
+    .domain-suffix {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      background: var(--accent-subtle);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      user-select: none;
+    }
+
+    /* Standard Monospace Input (for Key) */
+    .standard-input {
+      width: 100%;
+      height: 42px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0 12px;
+      font-size: 13.5px;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .standard-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* Code Editor & File Ingest Section */
+    .editor-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    /* Drag-and-Drop Ingest Zone */
+    .drop-zone {
+      border: 2px dashed var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      background: rgba(18, 18, 23, 0.5);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--accent-primary);
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+    }
+
+    /* Monospace Code Editor Textarea */
+    .code-textarea {
+      width: 100%;
+      height: 240px;
+      background: #09090c;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.5;
+      color: #e4e4e7;
+      resize: vertical;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .code-textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* Primary Submit Button */
+    .btn-submit {
+      width: 100%;
+      height: 48px;
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+    .btn-submit:hover:not(:disabled) {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Spinner Animation */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .spinner {
+      display: block;
+    }
+    .btn-submit.loading .btn-text {
+      opacity: 0.8;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==========================================================================
+       Vault & Response Cards (Success & Errors)
+       ========================================================================== */
+    .alert-banner {
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+      line-height: 1.45;
+    }
+    .alert-banner.hidden {
+      display: none;
+    }
+    .alert-error {
+      background: var(--rose-subtle);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fecdd3;
+    }
+    .alert-error svg {
+      color: var(--rose-accent);
+    }
+
+    /* Cryptographic Success Vault Card */
+    .vault-card {
+      background: linear-gradient(180deg, rgba(24, 24, 31, 0.95), rgba(18, 18, 23, 0.95));
+      border: 1px solid var(--emerald-accent);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 25px -5px var(--emerald-subtle);
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: fadeIn 0.3s ease;
+    }
+    .vault-card.hidden {
+      display: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .vault-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .vault-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald-accent);
+      background: var(--emerald-subtle);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .live-domain-link {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .key-box-wrap {
+      background: #09090b;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .key-box-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .key-display {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      color: #38bdf8;
+      word-break: break-all;
+      line-height: 1.4;
+      user-select: all;
+    }
+
+    .vault-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .vault-btn {
+      flex: 1;
+      min-width: 160px;
+      height: 40px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .vault-btn-primary {
+      background: var(--emerald-subtle);
+      color: var(--emerald-accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .vault-btn-primary:hover {
+      background: var(--emerald-accent);
+      color: #ffffff;
+    }
+    .vault-btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+    .vault-btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--border-strong);
+    }
+
+    .vault-warning {
+      font-size: 12px;
+      color: var(--amber-accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       Footer
+       ========================================================================== */
+    .studio-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      margin-top: auto;
+    }
+    .studio-footer strong {
+      color: var(--text-muted);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-strong);
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      white-space: nowrap;
+    }
+    .toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       Global SVG Gradients
+       ======================================================================== -->
+  <svg style="display: none;">
+    <defs>
+      <linearGradient id="flameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f97316" />
+        <stop offset="100%" stop-color="#ea580c" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ========================================================================
+       Studio Header
+       ======================================================================== -->
+  <header class="studio-header">
+    <div class="brand-wrap">
+      <div class="brand-emblem">
+        <svg viewBox="0 0 24 24">
+          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>
+          TORCH Host
+          <span class="brand-badge">STUDIO</span>
+        </h1>
+        <p>Sovereign Web &amp; Decentralized Name Service</p>
+      </div>
+    </div>
+
+    <div class="header-links">
+      <div class="badge-api-status" title="Direct API: https://torch-cloud-api.rh22042010.workers.dev/deploy">
+        <span class="status-dot"></span>
+        <span>Cloud Engine Live</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Main Application Container
+       ======================================================================== -->
+  <main class="studio-container">
+
+    <!-- Hero Intro -->
+    <div class="studio-hero">
+      <h2>Sovereign Web &amp; Domain Studio</h2>
+      <p>Deploy immutable, single-file HTML sites directly to the decentralized TORCH Open Network with cryptographic ownership.</p>
+    </div>
+
+    <!-- Error / Status Alert Banner -->
+    <div id="alert-banner" class="alert-banner alert-error hidden">
+      <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span id="alert-message">An unexpected error occurred.</span>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-nav" role="tablist">
+      <button class="tab-btn active" id="tab-nav-deploy" role="tab" aria-selected="true">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Deploy New .torch Site
+      </button>
+      <button class="tab-btn" id="tab-nav-update" role="tab" aria-selected="false">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+        Update Existing Site
+      </button>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-card">
+
+      <!-- ====================================================================
+           TAB 1: DEPLOY NEW .TORCH SITE
+           ==================================================================== -->
+      <form id="form-deploy" class="form-panel active">
+
+        <!-- Domain Input -->
+        <div class="input-group">
+          <label class="input-label" for="deploy-domain">
+            <span>Sovereign Domain Name</span>
+            <span class="input-hint">Lowercase a-z, 0-9, and hyphens</span>
+          </label>
+          <div class="domain-input-wrap">
+            <input
+              type="text"
+              id="deploy-domain"
+              class="domain-input"
+              placeholder="e.g. kolkata"
+              required
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <span class="domain-suffix">.torch</span>
+          </div>
+        </div>
+
+        <!-- HTML Source & File Ingestion -->
+        <div class="input-group">
+          <div class="editor-header-bar">
+            <label class="input-label" for="deploy-html">
+              <span>Site HTML Source</span>
+              <span class="input-hint">Single-file standalone HTML5/CSS/JS</span>
+            </label>
+            <div class="editor-actions">
+              <button type="button" id="btn-load-template" class="btn-secondary">
+                <svg class="icon icon-sm" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Load Starter Template
+              </button>
+            </div>
+          </div>
+
+          <!-- Drag and Drop Ingest Zone -->
+          <div id="deploy-drop-zone" class="drop-zone">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Drag &amp; Drop an <strong>.html</strong> file here, or click to browse</span>
+            <input type="file" id="deploy-file-input" accept=".html,.htm" style="display: none;">
+          </div>
+
+          <!-- Code Editor -->
+          <textarea
+            id="deploy-html"
+            class="code-textarea"
+            placeholder="<!DOCTYPE html>&#10;<html>&#10;  <head><title>My .torch Site</title></head>&#10;  <body><h1>Welcome to TORCH!</h1></body>&#10;</html>"
+            required
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-submit-deploy" class="btn-submit">
+          <div class="spinner"></div>
+          <svg class="icon" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          <span class="btn-text">Deploy to TORCH Network</span>
+        </button>
+
+      </form>
+
+      <!-- ====================================================================
+           TAB 2: UPDATE EXISTING SITE
+           ==================================================================== -->
+      <form id="form-update" class="form-panel">
+
+        <!-- Existing Domain Input -->
+        <div class="input-group">
+          <label class="input-label" for="update-domain">
+            <span>Existing Domain</span>
+            <span class="input-hint">e.g. kolkata or kolkata.torch</span>
+          </label>
+          <div class="domain-input-wrap">
+            <input
+              type="text"
+              id="update-domain"
+              class="domain-input"
+              placeholder="e.g. kolkata"
+              required
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <span class="domain-suffix">.torch</span>
+          </div>
+        </div>
+
+        <!-- Owner Key Verification Input -->
+        <div class="input-group">
+          <label class="input-label" for="update-owner-key">
+            <span>Cryptographic Ownership Key</span>
+            <span class="input-hint">Issued during domain deployment</span>
+          </label>
+          <input
+            type="text"
+            id="update-owner-key"
+            class="standard-input"
+            placeholder="TORCH-KEY-..."
+            required
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+
+        <!-- Updated HTML Code Input -->
+        <div class="input-group">
+          <div class="editor-header-bar">
+            <label class="input-label" for="update-html">
+              <span>Updated HTML Payload</span>
+              <span class="input-hint">Replaces active deployed build</span>
+            </label>
+          </div>
+
+          <!-- Drag and Drop for Update -->
+          <div id="update-drop-zone" class="drop-zone">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Drag &amp; Drop updated <strong>.html</strong> file, or browse</span>
+            <input type="file" id="update-file-input" accept=".html,.htm" style="display: none;">
+          </div>
+
+          <textarea
+            id="update-html"
+            class="code-textarea"
+            placeholder="Paste your updated HTML code here..."
+            required
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-submit-update" class="btn-submit">
+          <div class="spinner"></div>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span class="btn-text">Verify Key &amp; Update Site</span>
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- ====================================================================
+         Cryptographic Success Vault Card
+         ==================================================================== -->
+    <section id="vault-card" class="vault-card hidden">
+      <div class="vault-header">
+        <span class="vault-badge">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          SOVEREIGN VAULT SECURED
+        </span>
+        <a id="vault-live-link" href="#" target="_blank" class="live-domain-link">
+          <span id="vault-domain-display">kolkata.torch</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <div class="key-box-wrap">
+        <div class="key-box-label">Cryptographic Ownership Key (Keep Secret)</div>
+        <div id="vault-key-display" class="key-display">TORCH-KEY-...</div>
+      </div>
+
+      <div class="vault-actions">
+        <button type="button" id="btn-copy-key" class="vault-btn vault-btn-primary">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          Copy Ownership Key
+        </button>
+        <button type="button" id="btn-download-key" class="vault-btn vault-btn-secondary">
+          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download TORCH-KEY.txt
+        </button>
+      </div>
+
+      <div class="vault-warning">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span><strong>CRITICAL:</strong> Store your TORCH-KEY safely. It is the sole mathematical authorization proof required to update or migrate your domain in the future.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="studio-footer">
+    <span>Powered by <strong>TORCH Cloud Engine &amp; Unlimited Vault</strong></span>
+    <span>&bull;</span>
+    <span>Built by <a href="https://github.com/rh-devlab" target="_blank" rel="noreferrer">rh-devlab</a></span>
+  </footer>
+
+  <!-- Global Toast -->
+  <div id="toast" class="toast">Key copied to clipboard</div>
+
+  <!-- ========================================================================
+       ES2025+ Studio Engine
+       ======================================================================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      const API_ENDPOINT = 'https://torch-cloud-api.rh22042010.workers.dev/deploy';
+
+      /* --- Sample Starter Template --- */
+      const STARTER_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovereign Node | TORCH Network</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #09090b;
+      color: #f4f4f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 12px;
+      background: linear-gradient(135deg, #fff 40%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: #9494a3;
+      max-width: 480px;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    .btn {
+      margin-top: 24px;
+      padding: 12px 24px;
+      background: #f97316;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="badge">&#9889; VERIFIED .TORCH SOVEREIGN NODE</div>
+  <h1>Welcome to my Node</h1>
+  <p>This decentralized web application is hosted on the TORCH Open Routing and Community Hub network with cryptographic ownership.</p>
+  <a href="https://github.com/rh-devlab/torch-dns" class="btn" target="_blank">Explore Protocol</a>
+</body>
+</html>`;
+
+      /* --- DOM Elements --- */
+      const el = {
+        tabNavDeploy: document.getElementById('tab-nav-deploy'),
+        tabNavUpdate: document.getElementById('tab-nav-update'),
+        formDeploy: document.getElementById('form-deploy'),
+        formUpdate: document.getElementById('form-update'),
+
+        deployDomain: document.getElementById('deploy-domain'),
+        deployHtml: document.getElementById('deploy-html'),
+        btnSubmitDeploy: document.getElementById('btn-submit-deploy'),
+        deployDropZone: document.getElementById('deploy-drop-zone'),
+        deployFileInput: document.getElementById('deploy-file-input'),
+        btnLoadTemplate: document.getElementById('btn-load-template'),
+
+        updateDomain: document.getElementById('update-domain'),
+        updateOwnerKey: document.getElementById('update-owner-key'),
+        updateHtml: document.getElementById('update-html'),
+        btnSubmitUpdate: document.getElementById('btn-submit-update'),
+        updateDropZone: document.getElementById('update-drop-zone'),
+        updateFileInput: document.getElementById('update-file-input'),
+
+        alertBanner: document.getElementById('alert-banner'),
+        alertMessage: document.getElementById('alert-message'),
+
+        vaultCard: document.getElementById('vault-card'),
+        vaultDomainDisplay: document.getElementById('vault-domain-display'),
+        vaultKeyDisplay: document.getElementById('vault-key-display'),
+        vaultLiveLink: document.getElementById('vault-live-link'),
+        btnCopyKey: document.getElementById('btn-copy-key'),
+        btnDownloadKey: document.getElementById('btn-download-key'),
+
+        toast: document.getElementById('toast')
+      };
+
+      let activeVaultKey = '';
+      let activeVaultDomain = '';
+
+      /* --- Toast Utility --- */
+      let toastTimer = null;
+      const showToast = (msg) => {
+        el.toast.textContent = msg;
+        el.toast.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.toast.classList.remove('visible');
+        }, 2200);
+      };
+
+      /* --- Alert Handling --- */
+      const showAlert = (msg) => {
+        el.alertMessage.textContent = msg;
+        el.alertBanner.classList.remove('hidden');
+        el.alertBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      };
+
+      const hideAlert = () => {
+        el.alertBanner.classList.add('hidden');
+      };
+
+      /* --- Tab Switching Engine --- */
+      const switchTab = (tab) => {
+        hideAlert();
+        if (tab === 'deploy') {
+          el.tabNavDeploy.classList.add('active');
+          el.tabNavDeploy.setAttribute('aria-selected', 'true');
+          el.tabNavUpdate.classList.remove('active');
+          el.tabNavUpdate.setAttribute('aria-selected', 'false');
+          el.formDeploy.classList.add('active');
+          el.formUpdate.classList.remove('active');
+        } else {
+          el.tabNavUpdate.classList.add('active');
+          el.tabNavUpdate.setAttribute('aria-selected', 'true');
+          el.tabNavDeploy.classList.remove('active');
+          el.tabNavDeploy.setAttribute('aria-selected', 'false');
+          el.formUpdate.classList.add('active');
+          el.formDeploy.classList.remove('active');
+        }
+      };
+
+      el.tabNavDeploy.addEventListener('click', () => switchTab('deploy'));
+      el.tabNavUpdate.addEventListener('click', () => switchTab('update'));
+
+      /* --- Domain Format Validation --- */
+      const sanitizeDomain = (raw) => {
+        let clean = (raw || '').toLowerCase().trim();
+        if (clean.endsWith('.torch')) {
+          clean = clean.slice(0, -6);
+        }
+        return clean.replace(/[^a-z0-9-]/g, '');
+      };
+
+      el.deployDomain.addEventListener('input', () => {
+        el.deployDomain.value = sanitizeDomain(el.deployDomain.value);
+      });
+
+      /* --- Starter Template Ingestion --- */
+      el.btnLoadTemplate.addEventListener('click', () => {
+        el.deployHtml.value = STARTER_TEMPLATE;
+        showToast('Starter template loaded into editor');
+      });
+
+      /* --- Drag-and-Drop & File Ingest Helper --- */
+      const wireFileDrop = (dropZone, fileInput, textarea) => {
+        dropZone.addEventListener('click', () => fileInput.click());
+
+              fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) readFileContent(file, textarea);
+      });
+
+        dropZone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+          dropZone.classList.remove('dragover');
+        });
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file) readFileContent(file, textarea);
+      });
+      };
+
+      const readFileContent = (file, textarea) => {
+
+        if (!file.name.match(/\.(html|htm|txt)$/i)) {
+          showAlert('Please select a valid .html or .htm file.');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          textarea.value = e.target.result;
+          showToast(`Ingested file: ${file.name}`);
+        };
+        reader.readAsText(file);
+      };
+
+      wireFileDrop(el.deployDropZone, el.deployFileInput, el.deployHtml);
+      wireFileDrop(el.updateDropZone, el.updateFileInput, el.updateHtml);
+
+      /* --- Deploy Form Submission --- */
+      el.formDeploy.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideAlert();
+        el.vaultCard.classList.add('hidden');
+
+        const domainSlug = sanitizeDomain(el.deployDomain.value);
+        if (!domainSlug) {
+          showAlert('Please enter a valid sovereign domain name (e.g. kolkata).');
+          return;
+        }
+
+        const fullDomain = `${domainSlug}.torch`;
+        const html = el.deployHtml.value.trim();
+
+        if (!html) {
+          showAlert('Please provide HTML code or upload a file for your site.');
+          return;
+        }
+
+        // Loading UI
+        el.btnSubmitDeploy.disabled = true;
+        el.btnSubmitDeploy.classList.add('loading');
+
+        try {
+          const res = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ domain: fullDomain, html })
+          });
+
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            throw new Error(data.error || `Deployment error (HTTP ${res.status})`);
+          }
+
+          // Success: Expose Cryptographic Vault Card
+          activeVaultDomain = fullDomain;
+          activeVaultKey = data.ownerKey || 'TORCH-KEY-VERIFIED';
+
+          el.vaultDomainDisplay.textContent = fullDomain;
+          el.vaultKeyDisplay.textContent = activeVaultKey;
+          el.vaultLiveLink.href = data.url || `https://${fullDomain}`;
+          el.vaultCard.classList.remove('hidden');
+          el.vaultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+          showToast(`Successfully deployed ${fullDomain}!`);
+
+        } catch (err) {
+          showAlert(err.message || 'Failed to reach TORCH Cloud API. Please check your connection.');
+        } finally {
+          el.btnSubmitDeploy.disabled = false;
+          el.btnSubmitDeploy.classList.remove('loading');
+        }
+      });
+
+      /* --- Update Form Submission --- */
+      el.formUpdate.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideAlert();
+        el.vaultCard.classList.add('hidden');
+
+        const domainSlug = sanitizeDomain(el.updateDomain.value);
+        if (!domainSlug) {
+          showAlert('Please enter the target domain to update.');
+          return;
+        }
+
+        const fullDomain = `${domainSlug}.torch`;
+        const ownerKey = el.updateOwnerKey.value.trim();
+        const html = el.updateHtml.value.trim();
+
+        if (!ownerKey) {
+          showAlert('Ownership Key is mandatory to authorize site updates.');
+          return;
+        }
+
+        if (!html) {
+          showAlert('Please enter or upload the updated HTML payload.');
+          return;
+        }
+
+        // Loading UI
+        el.btnSubmitUpdate.disabled = true;
+        el.btnSubmitUpdate.classList.add('loading');
+
+        try {
+          const res = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ domain: fullDomain, html, ownerKey })
+          });
+
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            throw new Error(data.error || `Update failed (HTTP ${res.status}). Verify your TORCH-KEY.`);
+          }
+
+          showToast(`Successfully updated ${fullDomain}!`);
+          el.vaultDomainDisplay.textContent = fullDomain;
+          el.vaultKeyDisplay.textContent = ownerKey;
+          el.vaultLiveLink.href = data.url || `https://${fullDomain}`;
+          el.vaultCard.classList.remove('hidden');
+          el.vaultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        } catch (err) {
+          showAlert(err.message || 'Update failed. Check that the domain and ownerKey match.');
+        } finally {
+          el.btnSubmitUpdate.disabled = false;
+          el.btnSubmitUpdate.classList.remove('loading');
+        }
+      });
+
+      /* --- Key Export & Copy Utilities --- */
+      el.btnCopyKey.addEventListener('click', async () => {
+        if (!activeVaultKey) return;
+        try {
+          await navigator.clipboard.writeText(activeVaultKey);
+          showToast('Ownership key copied to clipboard');
+        } catch {
+          showToast(activeVaultKey);
+        }
+      });
+
+      el.btnDownloadKey.addEventListener('click', () => {
+        if (!activeVaultKey || !activeVaultDomain) return;
+        const textContent = `=====================================================
+TORCH SOVEREIGN OWNERSHIP RECORD
+=====================================================
+Domain:    ${activeVaultDomain}
+Owner Key: ${activeVaultKey}
+Date:      ${new Date().toISOString()}
+=====================================================
+WARNING: KEEP THIS KEY SAFE AND PRIVATE.
+This cryptographic secret is required to authorize any future
+updates or migrations for your .torch sovereign domain.
+`;
+        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `TORCH-KEY-${activeVaultDomain}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Downloaded TORCH-KEY.txt');
+      });
+
+    })();
+  </script>
+</body>
+</html>
